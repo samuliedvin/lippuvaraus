@@ -1,0 +1,22 @@
+{
+  "name": "lippuvarausjarjestelma",
+  "version": "1.0.0",
+  "description": "Käyttöliittymät -kurssin harjoitustyö 2017",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samuliedvin/lippuvaraus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samuliedvin/lippuvaraus/issues"
+  },
+  "homepage": "https://github.com/samuliedvin/lippuvaraus#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
