@@ -18,8 +18,6 @@ Ryhmä:
 
 ##Käytettävät tekniikat
 
-Pitkälti MEAN-stack
-
 ###Backend
 
 - Node.js
