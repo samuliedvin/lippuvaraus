@@ -4,7 +4,7 @@
   "description": "Käyttöliittymät -kurssin harjoitustyö 2017",
   "main": "server.js",
   "scripts": {
-    "start": "forever -w server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
