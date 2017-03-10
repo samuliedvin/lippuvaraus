@@ -1,8 +1,8 @@
 module.exports = {
 
     'facebookAuth' : {
-        'clientID'      : '363415430724302', // your App ID
-        'clientSecret'  : 'c1a70a18e87bc4166123316136e80938', // your App Secret
+        'clientID'      : '700832903452397', // your App ID
+        'clientSecret'  : '5760c45f780f46a73d197682349ea75d', // your App Secret
         'callbackURL'   : 'http://lippuvaraus.herokuapp.com/auth/facebook/callback'
     },
 
