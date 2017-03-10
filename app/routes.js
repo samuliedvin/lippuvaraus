@@ -54,12 +54,42 @@ module.exports = function(app, passport) {
     });
 
     // =====================================
+    // FACEBOOK ROUTES =====================
+    // =====================================
+    // route for facebook authentication and login
+    app.get('/auth/facebook', passport.authenticate('facebook', { session : false, scope : 'email'}));
+
+    // handle the callback after facebook has authenticated the user
+    app.get('/auth/facebook/callback',
+       passport.authenticate('facebook', {
+           session : false,
+           successRedirect : '/profile',
+           failureRedirect : '/'
+       }));
+
+    // =====================================
+    // TWITTER ROUTES ======================
+    // =====================================
+    // route for twitter authentication and login
+    app.get('/auth/twitter', passport.authenticate('twitter'));
+
+    // handle the callback after twitter has authenticated the user
+    app.get('/auth/twitter/callback',
+       passport.authenticate('twitter', {
+           successRedirect : '/profile',
+           failureRedirect : '/'
+       }));
+
+
+    // =====================================
     // LOGOUT ==============================
     // =====================================
     app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
+       req.logout();
+       res.redirect('/');
     });
+
+
 };
 
 // route middleware to make sure a user is logged in
