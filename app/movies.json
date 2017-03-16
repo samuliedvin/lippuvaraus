@@ -1,0 +1,2406 @@
+[
+  {
+    "yr": "2014",
+    "rank": 1,
+    "tit": "American Sniper",
+    "grs": 350126372.000000,
+    "opn": "2015-12",
+    "cnt": 3885,
+    "imgsrc": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTkxNzI3ODI4Nl5BMl5BanBnXkFtZTgwMjkwMjY4MjE@._V1_UY1200_CR90,0,630,1200_AL_.jpg"
+  },
+  {
+    "yr": "2014",
+    "rank": 2,
+    "tit": "The Hunger Games: Mockingjay - Part 1",
+    "grs": 337135885.000000,
+    "opn": "2015-11",
+    "cnt": 4151,
+    "imgsrc": "http://resizing.flixster.com/w9ekPWWIeLtPd0waWNZsiWMGp58=/800x1200/v1.bTsxMTE4OTg5OTtqOzE3MzM4OzIwNDg7ODAwOzEyMDA"
+  },
+  {
+    "yr": "2014",
+    "rank": 3,
+    "tit": "Guardians of the Galaxy",
+    "grs": 333176600.000000,
+    "opn": "2015-08",
+    "cnt": 4088,
+    "imgsrc" : "https://images-na.ssl-images-amazon.com/images/M/MV5BMTAwMjU5OTgxNjZeQTJeQWpwZ15BbWU4MDUxNDYxODEx._V1_UY1200_CR90,0,630,1200_AL_.jpg"
+  },
+  {
+    "yr": "2014",
+    "rank": 4,
+    "tit": "Captain America: The Winter Soldier",
+    "grs": 259766572.000000,
+    "opn": "2015-04",
+    "cnt": 3938,
+    "imgsrc": "https://upload.wikimedia.org/wikipedia/en/e/e8/Captain_America_The_Winter_Soldier.jpg"
+  },
+  {
+    "yr": "2014",
+    "rank": 5,
+    "tit": "The LEGO Movie",
+    "grs": 257760692.000000,
+    "opn": "2015-02",
+    "cnt": 3890
+  },
+  {
+    "yr": "2014",
+    "rank": 6,
+    "tit": "The Hobbit: The Battle of the Five Armies",
+    "grs": 255119788.000000,
+    "opn": "2015-12",
+    "cnt": 3875
+  },
+  {
+    "yr": "2014",
+    "rank": 7,
+    "tit": "Transformers: Age of Extinction",
+    "grs": 245439076.000000,
+    "opn": "2015-06",
+    "cnt": 4233
+  },
+  {
+    "yr": "2014",
+    "rank": 8,
+    "tit": "Maleficent",
+    "grs": 241410378.000000,
+    "opn": "2015-05",
+    "cnt": 3948
+  },
+  {
+    "yr": "2014",
+    "rank": 9,
+    "tit": "X-Men: Days of Future Past",
+    "grs": 233921534.000000,
+    "opn": "2015-05",
+    "cnt": 4001
+  },
+  {
+    "yr": "2014",
+    "rank": 10,
+    "tit": "Big Hero 6",
+    "grs": 222527828.000000,
+    "opn": "2015-11",
+    "cnt": 3773
+  },
+  {
+    "yr": "2014",
+    "rank": 11,
+    "tit": "Dawn of the Planet of the Apes",
+    "grs": 208545589.000000,
+    "opn": "2015-07",
+    "cnt": 3969
+  },
+  {
+    "yr": "2014",
+    "rank": 12,
+    "tit": "The Amazing Spider-Man 2",
+    "grs": 202853933.000000,
+    "opn": "2015-05",
+    "cnt": 4324
+  },
+  {
+    "yr": "2014",
+    "rank": 13,
+    "tit": "Godzilla (2014)",
+    "grs": 200676069.000000,
+    "opn": "2015-05",
+    "cnt": 3952
+  },
+  {
+    "yr": "2014",
+    "rank": 14,
+    "tit": "22 Jump Street",
+    "grs": 191719337.000000,
+    "opn": "2015-06",
+    "cnt": 3426
+  },
+  {
+    "yr": "2014",
+    "rank": 15,
+    "tit": "Teenage Mutant Ninja Turtles (2014)",
+    "grs": 191204754.000000,
+    "opn": "2015-08",
+    "cnt": 3980
+  },
+  {
+    "yr": "2014",
+    "rank": 16,
+    "tit": "Interstellar",
+    "grs": 188020017.000000,
+    "opn": "2015-11",
+    "cnt": 3561
+  },
+  {
+    "yr": "2014",
+    "rank": 17,
+    "tit": "How to Train Your Dragon 2",
+    "grs": 177002924.000000,
+    "opn": "2015-06",
+    "cnt": 4268
+  },
+  {
+    "yr": "2014",
+    "rank": 18,
+    "tit": "Gone Girl",
+    "grs": 167767189.000000,
+    "opn": "2015-10",
+    "cnt": 3284
+  },
+  {
+    "yr": "2014",
+    "rank": 19,
+    "tit": "Divergent",
+    "grs": 150947895.000000,
+    "opn": "2015-03",
+    "cnt": 3936
+  },
+  {
+    "yr": "2014",
+    "rank": 20,
+    "tit": "Neighbors",
+    "grs": 150157400.000000,
+    "opn": "2015-05",
+    "cnt": 3311
+  },
+  {
+    "yr": "2014",
+    "rank": 21,
+    "tit": "Ride Along",
+    "grs": 134938200.000000,
+    "opn": "2015-01",
+    "cnt": 2867
+  },
+  {
+    "yr": "2014",
+    "rank": 22,
+    "tit": "Rio 2",
+    "grs": 131538435.000000,
+    "opn": "2015-04",
+    "cnt": 3975
+  },
+  {
+    "yr": "2014",
+    "rank": 23,
+    "tit": "Into The Woods",
+    "grs": 128002372.000000,
+    "opn": "2015-12",
+    "cnt": 2833
+  },
+  {
+    "yr": "2014",
+    "rank": 24,
+    "tit": "Lucy",
+    "grs": 126663600.000000,
+    "opn": "2015-07",
+    "cnt": 3202
+  },
+  {
+    "yr": "2014",
+    "rank": 25,
+    "tit": "The Fault in our Stars",
+    "grs": 124872350.000000,
+    "opn": "2015-06",
+    "cnt": 3340
+  },
+  {
+    "yr": "2014",
+    "rank": 26,
+    "tit": "Unbroken",
+    "grs": 115637895.000000,
+    "opn": "2015-12",
+    "cnt": 3301
+  },
+  {
+    "yr": "2014",
+    "rank": 27,
+    "tit": "Night at the Museum: Secret of the Tomb",
+    "grs": 113746621.000000,
+    "opn": "2015-12",
+    "cnt": 3914
+  },
+  {
+    "yr": "2014",
+    "rank": 28,
+    "tit": "Mr. Peabody & Sherman",
+    "grs": 111506430.000000,
+    "opn": "2015-03",
+    "cnt": 3951
+  },
+  {
+    "yr": "2014",
+    "rank": 29,
+    "tit": "300: Rise of An Empire",
+    "grs": 106580051.000000,
+    "opn": "2015-03",
+    "cnt": 3490
+  },
+  {
+    "yr": "2014",
+    "rank": 30,
+    "tit": "The Maze Runner",
+    "grs": 102427862.000000,
+    "opn": "2015-09",
+    "cnt": 3638
+  },
+  {
+    "yr": "2014",
+    "rank": 31,
+    "tit": "The Equalizer",
+    "grs": 101530738.000000,
+    "opn": "2015-09",
+    "cnt": 3236
+  },
+  {
+    "yr": "2014",
+    "rank": 32,
+    "tit": "Noah",
+    "grs": 101200044.000000,
+    "opn": "2015-03",
+    "cnt": 3571
+  },
+  {
+    "yr": "2014",
+    "rank": 33,
+    "tit": "Edge of Tomorrow",
+    "grs": 100206256.000000,
+    "opn": "2015-06",
+    "cnt": 3505
+  },
+  {
+    "yr": "2014",
+    "rank": 34,
+    "tit": "Non-Stop",
+    "grs": 92168600.000000,
+    "opn": "2015-02",
+    "cnt": 3183
+  },
+  {
+    "yr": "2014",
+    "rank": 35,
+    "tit": "Heaven is for Real",
+    "grs": 91443253.000000,
+    "opn": "2015-04",
+    "cnt": 3048
+  },
+  {
+    "yr": "2014",
+    "rank": 36,
+    "tit": "The Imitation Game",
+    "grs": 91125683.000000,
+    "opn": "2015-11",
+    "cnt": 2402
+  },
+  {
+    "yr": "2014",
+    "rank": 37,
+    "tit": "Dumb and Dumber To",
+    "grs": 86208010.000000,
+    "opn": "2015-11",
+    "cnt": 3188
+  },
+  {
+    "yr": "2014",
+    "rank": 38,
+    "tit": "Annie (2014)",
+    "grs": 85911262.000000,
+    "opn": "2015-12",
+    "cnt": 3197
+  },
+  {
+    "yr": "2014",
+    "rank": 39,
+    "tit": "Fury (2014)",
+    "grs": 85817906.000000,
+    "opn": "2015-10",
+    "cnt": 3313
+  },
+  {
+    "yr": "2014",
+    "rank": 40,
+    "tit": "Tammy",
+    "grs": 84525432.000000,
+    "opn": "2015-07",
+    "cnt": 3465
+  },
+  {
+    "yr": "2014",
+    "rank": 41,
+    "tit": "Annabelle",
+    "grs": 84273813.000000,
+    "opn": "2015-10",
+    "cnt": 3215
+  },
+  {
+    "yr": "2014",
+    "rank": 42,
+    "tit": "The Other Woman (2014)",
+    "grs": 83911193.000000,
+    "opn": "2015-04",
+    "cnt": 3306
+  },
+  {
+    "yr": "2014",
+    "rank": 43,
+    "tit": "Penguins of Madagascar",
+    "grs": 83350911.000000,
+    "opn": "2015-11",
+    "cnt": 3775
+  },
+  {
+    "yr": "2014",
+    "rank": 44,
+    "tit": "Let's Be Cops",
+    "grs": 82390774.000000,
+    "opn": "2015-08",
+    "cnt": 3140
+  },
+  {
+    "yr": "2014",
+    "rank": 45,
+    "tit": "The Monuments Men",
+    "grs": 78031620.000000,
+    "opn": "2015-02",
+    "cnt": 3083
+  },
+  {
+    "yr": "2014",
+    "rank": 46,
+    "tit": "Hercules (2014)",
+    "grs": 72688614.000000,
+    "opn": "2015-07",
+    "cnt": 3595
+  },
+  {
+    "yr": "2014",
+    "rank": 47,
+    "tit": "The Purge: Anarchy",
+    "grs": 71962800.000000,
+    "opn": "2015-07",
+    "cnt": 2856
+  },
+  {
+    "yr": "2014",
+    "rank": 48,
+    "tit": "Alexander and the Terrible, Horrible, No Good, Very Bad Day",
+    "grs": 66954149.000000,
+    "opn": "2015-10",
+    "cnt": 3117
+  },
+  {
+    "yr": "2014",
+    "rank": 49,
+    "tit": "Think Like a Man Too",
+    "grs": 65182182.000000,
+    "opn": "2015-06",
+    "cnt": 2225
+  },
+  {
+    "yr": "2014",
+    "rank": 50,
+    "tit": "Exodus: Gods and Kings",
+    "grs": 65014513.000000,
+    "opn": "2015-12",
+    "cnt": 3503
+  },
+  {
+    "yr": "2014",
+    "rank": 51,
+    "tit": "The Nut Job",
+    "grs": 64251541.000000,
+    "opn": "2015-01",
+    "cnt": 3472
+  },
+  {
+    "yr": "2014",
+    "rank": 52,
+    "tit": "God's Not Dead",
+    "grs": 60755732.000000,
+    "opn": "2015-03",
+    "cnt": 1860
+  },
+  {
+    "yr": "2014",
+    "rank": 53,
+    "tit": "Son of God",
+    "grs": 59700064.000000,
+    "opn": "2015-02",
+    "cnt": 3271
+  },
+  {
+    "yr": "2014",
+    "rank": 54,
+    "tit": "Planes: Fire & Rescue",
+    "grs": 59165787.000000,
+    "opn": "2015-07",
+    "cnt": 3839
+  },
+  {
+    "yr": "2014",
+    "rank": 55,
+    "tit": "The Grand Budapest Hotel",
+    "grs": 59100318.000000,
+    "opn": "2015-03",
+    "cnt": 1467
+  },
+  {
+    "yr": "2014",
+    "rank": 56,
+    "tit": "RoboCop (2014)",
+    "grs": 58607007.000000,
+    "opn": "2015-02",
+    "cnt": 3372
+  },
+  {
+    "yr": "2014",
+    "rank": 57,
+    "tit": "Dracula Untold",
+    "grs": 56280355.000000,
+    "opn": "2015-10",
+    "cnt": 2900
+  },
+  {
+    "yr": "2014",
+    "rank": 58,
+    "tit": "Horrible Bosses 2",
+    "grs": 54445357.000000,
+    "opn": "2015-11",
+    "cnt": 3400
+  },
+  {
+    "yr": "2014",
+    "rank": 59,
+    "tit": "The Hundred-Foot Journey",
+    "grs": 54240821.000000,
+    "opn": "2015-08",
+    "cnt": 2167
+  },
+  {
+    "yr": "2014",
+    "rank": 60,
+    "tit": "No Good Deed (2014)",
+    "grs": 52543632.000000,
+    "opn": "2015-09",
+    "cnt": 2175
+  },
+  {
+    "yr": "2014",
+    "rank": 61,
+    "tit": "Selma",
+    "grs": 52076908.000000,
+    "opn": "2015-12",
+    "cnt": 2235
+  },
+  {
+    "yr": "2014",
+    "rank": 62,
+    "tit": "Muppets Most Wanted",
+    "grs": 51183113.000000,
+    "opn": "2015-03",
+    "cnt": 3194
+  },
+  {
+    "yr": "2014",
+    "rank": 63,
+    "tit": "Ouija",
+    "grs": 50856010.000000,
+    "opn": "2015-10",
+    "cnt": 2899
+  },
+  {
+    "yr": "2014",
+    "rank": 64,
+    "tit": "The Boxtrolls",
+    "grs": 50837305.000000,
+    "opn": "2015-09",
+    "cnt": 3464
+  },
+  {
+    "yr": "2014",
+    "rank": 65,
+    "tit": "Jack Ryan: Shadow Recruit",
+    "grs": 50577412.000000,
+    "opn": "2015-01",
+    "cnt": 3387
+  },
+  {
+    "yr": "2014",
+    "rank": 66,
+    "tit": "If I Stay",
+    "grs": 50474843.000000,
+    "opn": "2015-08",
+    "cnt": 3157
+  },
+  {
+    "yr": "2014",
+    "rank": 67,
+    "tit": "The Book of Life (2014)",
+    "grs": 50151543.000000,
+    "opn": "2015-10",
+    "cnt": 3113
+  },
+  {
+    "yr": "2014",
+    "rank": 68,
+    "tit": "About Last Night (2014)",
+    "grs": 48637684.000000,
+    "opn": "2015-02",
+    "cnt": 2253
+  },
+  {
+    "yr": "2014",
+    "rank": 69,
+    "tit": "Into The Storm",
+    "grs": 47602194.000000,
+    "opn": "2015-08",
+    "cnt": 3434
+  },
+  {
+    "yr": "2014",
+    "rank": 70,
+    "tit": "The Judge",
+    "grs": 47119388.000000,
+    "opn": "2015-10",
+    "cnt": 3003
+  },
+  {
+    "yr": "2014",
+    "rank": 71,
+    "tit": "Jersey Boys",
+    "grs": 47047013.000000,
+    "opn": "2015-06",
+    "cnt": 2905
+  },
+  {
+    "yr": "2014",
+    "rank": 72,
+    "tit": "Blended",
+    "grs": 46294610.000000,
+    "opn": "2015-05",
+    "cnt": 3555
+  },
+  {
+    "yr": "2014",
+    "rank": 73,
+    "tit": "The Giver",
+    "grs": 45090374.000000,
+    "opn": "2015-08",
+    "cnt": 3003
+  },
+  {
+    "yr": "2014",
+    "rank": 74,
+    "tit": "St. Vincent",
+    "grs": 44137712.000000,
+    "opn": "2015-10",
+    "cnt": 2552
+  },
+  {
+    "yr": "2014",
+    "rank": 75,
+    "tit": "Need for Speed",
+    "grs": 43577636.000000,
+    "opn": "2015-03",
+    "cnt": 3115
+  },
+  {
+    "yr": "2014",
+    "rank": 76,
+    "tit": "A Million Ways to Die in the West",
+    "grs": 43139300.000000,
+    "opn": "2015-05",
+    "cnt": 3160
+  },
+  {
+    "yr": "2014",
+    "rank": 77,
+    "tit": "John Wick",
+    "grs": 43037835.000000,
+    "opn": "2015-10",
+    "cnt": 2589
+  },
+  {
+    "yr": "2014",
+    "rank": 78,
+    "tit": "Birdman",
+    "grs": 42340598.000000,
+    "opn": "2015-10",
+    "cnt": 1213
+  },
+  {
+    "yr": "2014",
+    "rank": 79,
+    "tit": "Dolphin Tale 2",
+    "grs": 42024533.000000,
+    "opn": "2015-09",
+    "cnt": 3656
+  },
+  {
+    "yr": "2014",
+    "rank": 80,
+    "tit": "The Expendables 3",
+    "grs": 39322544.000000,
+    "opn": "2015-08",
+    "cnt": 3221
+  },
+  {
+    "yr": "2014",
+    "rank": 81,
+    "tit": "Earth to Echo",
+    "grs": 38934842.000000,
+    "opn": "2015-07",
+    "cnt": 3230
+  },
+  {
+    "yr": "2014",
+    "rank": 82,
+    "tit": "Sex Tape",
+    "grs": 38543473.000000,
+    "opn": "2015-07",
+    "cnt": 3062
+  },
+  {
+    "yr": "2014",
+    "rank": 83,
+    "tit": "Wild (2014)",
+    "grs": 37880356.000000,
+    "opn": "2015-12",
+    "cnt": 1361
+  },
+  {
+    "yr": "2014",
+    "rank": 84,
+    "tit": "Million Dollar Arm",
+    "grs": 36457627.000000,
+    "opn": "2015-05",
+    "cnt": 3019
+  },
+  {
+    "yr": "2014",
+    "rank": 85,
+    "tit": "The Theory of Everything",
+    "grs": 35893537.000000,
+    "opn": "2015-11",
+    "cnt": 1220
+  },
+  {
+    "yr": "2014",
+    "rank": 86,
+    "tit": "This is Where I Leave You",
+    "grs": 34296320.000000,
+    "opn": "2015-09",
+    "cnt": 2868
+  },
+  {
+    "yr": "2014",
+    "rank": 87,
+    "tit": "The Gambler",
+    "grs": 33680992.000000,
+    "opn": "2015-12",
+    "cnt": 2494
+  },
+  {
+    "yr": "2014",
+    "rank": 88,
+    "tit": "Paranormal Activity: The Marked Ones",
+    "grs": 32462372.000000,
+    "opn": "2015-01",
+    "cnt": 2883
+  },
+  {
+    "yr": "2014",
+    "rank": 89,
+    "tit": "Nightcrawler",
+    "grs": 32381217.000000,
+    "opn": "2015-10",
+    "cnt": 2766
+  },
+  {
+    "yr": "2014",
+    "rank": 90,
+    "tit": "Chef",
+    "grs": 31424003.000000,
+    "opn": "2015-05",
+    "cnt": 1298
+  },
+  {
+    "yr": "2014",
+    "rank": 91,
+    "tit": "Get On Up",
+    "grs": 30703100.000000,
+    "opn": "2015-08",
+    "cnt": 2469
+  },
+  {
+    "yr": "2014",
+    "rank": 92,
+    "tit": "3 Days to Kill",
+    "grs": 30697999.000000,
+    "opn": "2015-02",
+    "cnt": 2872
+  },
+  {
+    "yr": "2014",
+    "rank": 93,
+    "tit": "Deliver Us From Evil",
+    "grs": 30577122.000000,
+    "opn": "2015-07",
+    "cnt": 3049
+  },
+  {
+    "yr": "2014",
+    "rank": 94,
+    "tit": "When the Game Stands Tall",
+    "grs": 30127963.000000,
+    "opn": "2015-08",
+    "cnt": 2766
+  },
+  {
+    "yr": "2014",
+    "rank": 95,
+    "tit": "Draft Day",
+    "grs": 28842237.000000,
+    "opn": "2015-04",
+    "cnt": 2781
+  },
+  {
+    "yr": "2014",
+    "rank": 96,
+    "tit": "Oculus",
+    "grs": 27695246.000000,
+    "opn": "2015-04",
+    "cnt": 2648
+  },
+  {
+    "yr": "2014",
+    "rank": 97,
+    "tit": "The Best of Me",
+    "grs": 26766213.000000,
+    "opn": "2015-10",
+    "cnt": 2936
+  },
+  {
+    "yr": "2014",
+    "rank": 98,
+    "tit": "A Walk Among the Tombstones",
+    "grs": 26307600.000000,
+    "opn": "2015-09",
+    "cnt": 2714
+  },
+  {
+    "yr": "2014",
+    "rank": 99,
+    "tit": "That Awkward Moment",
+    "grs": 26068955.000000,
+    "opn": "2015-01",
+    "cnt": 2809
+  },
+  {
+    "yr": "2014",
+    "rank": 100,
+    "tit": "Boyhood",
+    "grs": 25352281.000000,
+    "opn": "2015-07",
+    "cnt": 775
+  },
+  {
+    "yr": "2014",
+    "rank": 101,
+    "tit": "Top Five",
+    "grs": 25317291.000000,
+    "opn": "2015-12",
+    "cnt": 1426
+  },
+  {
+    "yr": "2014",
+    "rank": 102,
+    "tit": "The November Man",
+    "grs": 25018119.000000,
+    "opn": "2015-08",
+    "cnt": 2776
+  },
+  {
+    "yr": "2014",
+    "rank": 103,
+    "tit": "Endless Love (2014)",
+    "grs": 23438250.000000,
+    "opn": "2015-02",
+    "cnt": 2896
+  },
+  {
+    "yr": "2014",
+    "rank": 104,
+    "tit": "Pompeii",
+    "grs": 23219748.000000,
+    "opn": "2015-02",
+    "cnt": 2658
+  },
+  {
+    "yr": "2014",
+    "rank": 105,
+    "tit": "Transcendence",
+    "grs": 23022309.000000,
+    "opn": "2015-04",
+    "cnt": 3455
+  },
+  {
+    "yr": "2014",
+    "rank": 106,
+    "tit": "As Above/So Below",
+    "grs": 21321100.000000,
+    "opn": "2015-08",
+    "cnt": 2650
+  },
+  {
+    "yr": "2014",
+    "rank": 107,
+    "tit": "Brick Mansions",
+    "grs": 20396829.000000,
+    "opn": "2015-04",
+    "cnt": 2647
+  },
+  {
+    "yr": "2014",
+    "rank": 108,
+    "tit": "I, Frankenstein",
+    "grs": 19075290.000000,
+    "opn": "2015-01",
+    "cnt": 2753
+  },
+  {
+    "yr": "2014",
+    "rank": 109,
+    "tit": "The Legend of Hercules",
+    "grs": 18848538.000000,
+    "opn": "2015-01",
+    "cnt": 2104
+  },
+  {
+    "yr": "2014",
+    "rank": 110,
+    "tit": "Bears",
+    "grs": 17780194.000000,
+    "opn": "2015-04",
+    "cnt": 1790
+  },
+  {
+    "yr": "2014",
+    "rank": 111,
+    "tit": "Addicted",
+    "grs": 17390770.000000,
+    "opn": "2015-10",
+    "cnt": 1037
+  },
+  {
+    "yr": "2014",
+    "rank": 112,
+    "tit": "A Haunted House 2",
+    "grs": 17329486.000000,
+    "opn": "2015-04",
+    "cnt": 2310
+  },
+  {
+    "yr": "2014",
+    "rank": 113,
+    "tit": "A Most Wanted Man",
+    "grs": 17237855.000000,
+    "opn": "2015-07",
+    "cnt": 801
+  },
+  {
+    "yr": "2014",
+    "rank": 114,
+    "tit": "Begin Again",
+    "grs": 16170632.000000,
+    "opn": "2015-06",
+    "cnt": 1302
+  },
+  {
+    "yr": "2014",
+    "rank": 115,
+    "tit": "Tyler Perry's The Single Moms Club",
+    "grs": 15973881.000000,
+    "opn": "2015-03",
+    "cnt": 1896
+  },
+  {
+    "yr": "2014",
+    "rank": 116,
+    "tit": "Devil's Due",
+    "grs": 15821461.000000,
+    "opn": "2015-01",
+    "cnt": 2544
+  },
+  {
+    "yr": "2014",
+    "rank": 117,
+    "tit": "And So It Goes",
+    "grs": 15160801.000000,
+    "opn": "2015-07",
+    "cnt": 1816
+  },
+  {
+    "yr": "2014",
+    "rank": 118,
+    "tit": "Step Up All In",
+    "grs": 14904384.000000,
+    "opn": "2015-08",
+    "cnt": 2072
+  },
+  {
+    "yr": "2014",
+    "rank": 119,
+    "tit": "Beyond the Lights",
+    "grs": 14618727.000000,
+    "opn": "2015-11",
+    "cnt": 1789
+  },
+  {
+    "yr": "2014",
+    "rank": 120,
+    "tit": "Big Eyes",
+    "grs": 14482031.000000,
+    "opn": "2015-12",
+    "cnt": 1408
+  },
+  {
+    "yr": "2014",
+    "rank": 121,
+    "tit": "America (2014)",
+    "grs": 14444502.000000,
+    "opn": "2015-06",
+    "cnt": 1105
+  },
+  {
+    "yr": "2014",
+    "rank": 122,
+    "tit": "Left Behind (2014)",
+    "grs": 14019924.000000,
+    "opn": "2015-10",
+    "cnt": 1887
+  },
+  {
+    "yr": "2014",
+    "rank": 123,
+    "tit": "Frank Miller's Sin City: A Dame to Kill For",
+    "grs": 13757804.000000,
+    "opn": "2015-08",
+    "cnt": 2894
+  },
+  {
+    "yr": "2014",
+    "rank": 124,
+    "tit": "Labor Day",
+    "grs": 13371528.000000,
+    "opn": "2015-01",
+    "cnt": 2584
+  },
+  {
+    "yr": "2014",
+    "rank": 125,
+    "tit": "Whiplash",
+    "grs": 13092000.000000,
+    "opn": "2015-10",
+    "cnt": 567
+  },
+  {
+    "yr": "2014",
+    "rank": 126,
+    "tit": "Winter's Tale",
+    "grs": 12600231.000000,
+    "opn": "2015-02",
+    "cnt": 2965
+  },
+  {
+    "yr": "2014",
+    "rank": 127,
+    "tit": "Foxcatcher",
+    "grs": 12096300.000000,
+    "opn": "2015-11",
+    "cnt": 759
+  },
+  {
+    "yr": "2014",
+    "rank": 128,
+    "tit": "Belle",
+    "grs": 10726630.000000,
+    "opn": "2015-05",
+    "cnt": 525
+  },
+  {
+    "yr": "2014",
+    "rank": 129,
+    "tit": "The Drop",
+    "grs": 10724389.000000,
+    "opn": "2015-09",
+    "cnt": 1192
+  },
+  {
+    "yr": "2014",
+    "rank": 130,
+    "tit": "P.K.",
+    "grs": 10616104.000000,
+    "opn": "2015-12",
+    "cnt": 272
+  },
+  {
+    "yr": "2014",
+    "rank": 131,
+    "tit": "Magic in the Moonlight",
+    "grs": 10539326.000000,
+    "opn": "2015-07",
+    "cnt": 964
+  },
+  {
+    "yr": "2014",
+    "rank": 132,
+    "tit": "Sabotage (2014)",
+    "grs": 10508518.000000,
+    "opn": "2015-03",
+    "cnt": 2486
+  },
+  {
+    "yr": "2014",
+    "rank": 133,
+    "tit": "Moms' Night Out",
+    "grs": 10429707.000000,
+    "opn": "2015-05",
+    "cnt": 1046
+  },
+  {
+    "yr": "2014",
+    "rank": 134,
+    "tit": "Island of Lemurs: Madagascar (IMAX)",
+    "grs": 10152358.000000,
+    "opn": "2015-04",
+    "cnt": 302
+  },
+  {
+    "yr": "2014",
+    "rank": 135,
+    "tit": "The Quiet Ones",
+    "grs": 8509867.000000,
+    "opn": "2015-04",
+    "cnt": 2027
+  },
+  {
+    "yr": "2014",
+    "rank": 136,
+    "tit": "Legends of Oz: Dorothy's Return",
+    "grs": 8462027.000000,
+    "opn": "2015-05",
+    "cnt": 2658
+  },
+  {
+    "yr": "2014",
+    "rank": 137,
+    "tit": "Inherent Vice",
+    "grs": 8110975.000000,
+    "opn": "2015-12",
+    "cnt": 653
+  },
+  {
+    "yr": "2014",
+    "rank": 138,
+    "tit": "Vampire Academy",
+    "grs": 7791979.000000,
+    "opn": "2015-02",
+    "cnt": 2676
+  },
+  {
+    "yr": "2014",
+    "rank": 139,
+    "tit": "Bad Words",
+    "grs": 7779614.000000,
+    "opn": "2015-03",
+    "cnt": 1074
+  },
+  {
+    "yr": "2014",
+    "rank": 140,
+    "tit": "Cantinflas",
+    "grs": 6382924.000000,
+    "opn": "2015-08",
+    "cnt": 429
+  },
+  {
+    "yr": "2014",
+    "rank": 141,
+    "tit": "The Interview (2014)",
+    "grs": 6105175.000000,
+    "opn": "2015-12",
+    "cnt": 581
+  },
+  {
+    "yr": "2014",
+    "rank": 142,
+    "tit": "Meet the Mormons",
+    "grs": 6047363.000000,
+    "opn": "2015-10",
+    "cnt": 333
+  },
+  {
+    "yr": "2014",
+    "rank": 143,
+    "tit": "A Most Violent Year",
+    "grs": 5749134.000000,
+    "opn": "2015-12",
+    "cnt": 818
+  },
+  {
+    "yr": "2014",
+    "rank": 144,
+    "tit": "Cesar Chavez",
+    "grs": 5571497.000000,
+    "opn": "2015-03",
+    "cnt": 664
+  },
+  {
+    "yr": "2014",
+    "rank": 145,
+    "tit": "The Skeleton Twins",
+    "grs": 5284309.000000,
+    "opn": "2015-09",
+    "cnt": 461
+  },
+  {
+    "yr": "2014",
+    "rank": 146,
+    "tit": "The Wind Rises",
+    "grs": 5209580.000000,
+    "opn": "2015-02",
+    "cnt": 496
+  },
+  {
+    "yr": "2014",
+    "rank": 147,
+    "tit": "Snowpiercer",
+    "grs": 4563650.000000,
+    "opn": "2015-06",
+    "cnt": 356
+  },
+  {
+    "yr": "2014",
+    "rank": 148,
+    "tit": "The Railway Man",
+    "grs": 4438438.000000,
+    "opn": "2015-04",
+    "cnt": 600
+  },
+  {
+    "yr": "2014",
+    "rank": 149,
+    "tit": "Dear White People",
+    "grs": 4404154.000000,
+    "opn": "2015-10",
+    "cnt": 393
+  },
+  {
+    "yr": "2014",
+    "rank": 150,
+    "tit": "The Lunchbox",
+    "grs": 4235151.000000,
+    "opn": "2015-02",
+    "cnt": 165
+  },
+  {
+    "yr": "2014",
+    "rank": 151,
+    "tit": "My Old Lady",
+    "grs": 4013786.000000,
+    "opn": "2015-09",
+    "cnt": 273
+  },
+  {
+    "yr": "2014",
+    "rank": 152,
+    "tit": "Mr. Turner",
+    "grs": 3958500.000000,
+    "opn": "2015-12",
+    "cnt": 120
+  },
+  {
+    "yr": "2014",
+    "rank": 153,
+    "tit": "Ida",
+    "grs": 3827060.000000,
+    "opn": "2015-05",
+    "cnt": 137
+  },
+  {
+    "yr": "2014",
+    "rank": 154,
+    "tit": "Fading Gigolo",
+    "grs": 3769873.000000,
+    "opn": "2015-04",
+    "cnt": 356
+  },
+  {
+    "yr": "2014",
+    "rank": 155,
+    "tit": "Calvary",
+    "grs": 3600006.000000,
+    "opn": "2015-08",
+    "cnt": 322
+  },
+  {
+    "yr": "2014",
+    "rank": 156,
+    "tit": "Wish I Was Here",
+    "grs": 3591299.000000,
+    "opn": "2015-07",
+    "cnt": 753
+  },
+  {
+    "yr": "2014",
+    "rank": 157,
+    "tit": "Ghostbusters (30th Anniversary re-release)",
+    "grs": 3580343.000000,
+    "opn": "2015-08",
+    "cnt": 784
+  },
+  {
+    "yr": "2014",
+    "rank": 158,
+    "tit": "Mommy",
+    "grs": 3494070.000000,
+    "opn": "2015-09",
+    "cnt": 83
+  },
+  {
+    "yr": "2014",
+    "rank": 159,
+    "tit": "What If (2014)",
+    "grs": 3493000.000000,
+    "opn": "2015-08",
+    "cnt": 787
+  },
+  {
+    "yr": "2014",
+    "rank": 160,
+    "tit": "The Grand Seduction",
+    "grs": 3430018.000000,
+    "opn": "2015-05",
+    "cnt": 124
+  },
+  {
+    "yr": "2014",
+    "rank": 161,
+    "tit": "Veronica Mars",
+    "grs": 3322127.000000,
+    "opn": "2015-03",
+    "cnt": 347
+  },
+  {
+    "yr": "2014",
+    "rank": 162,
+    "tit": "Before I Go To Sleep",
+    "grs": 3242457.000000,
+    "opn": "2015-10",
+    "cnt": 1902
+  },
+  {
+    "yr": "2014",
+    "rank": 163,
+    "tit": "Rosewater",
+    "grs": 3128941.000000,
+    "opn": "2015-11",
+    "cnt": 371
+  },
+  {
+    "yr": "2014",
+    "rank": 164,
+    "tit": "Obvious Child",
+    "grs": 3123963.000000,
+    "opn": "2015-06",
+    "cnt": 202
+  },
+  {
+    "yr": "2014",
+    "rank": 165,
+    "tit": "The Trip to Italy",
+    "grs": 2880537.000000,
+    "opn": "2015-08",
+    "cnt": 199
+  },
+  {
+    "yr": "2014",
+    "rank": 166,
+    "tit": "The Identical",
+    "grs": 2827666.000000,
+    "opn": "2015-09",
+    "cnt": 1956
+  },
+  {
+    "yr": "2014",
+    "rank": 167,
+    "tit": "The Fluffy Movie",
+    "grs": 2827393.000000,
+    "opn": "2015-07",
+    "cnt": 432
+  },
+  {
+    "yr": "2014",
+    "rank": 168,
+    "tit": "Citizenfour",
+    "grs": 2799318.000000,
+    "opn": "2015-10",
+    "cnt": 105
+  },
+  {
+    "yr": "2014",
+    "rank": 169,
+    "tit": "Kirk Cameron's Saving Christmas",
+    "grs": 2783970.000000,
+    "opn": "2015-11",
+    "cnt": 410
+  },
+  {
+    "yr": "2014",
+    "rank": 170,
+    "tit": "The Pyramid",
+    "grs": 2756333.000000,
+    "opn": "2015-12",
+    "cnt": 685
+  },
+  {
+    "yr": "2014",
+    "rank": 171,
+    "tit": "The Good Lie",
+    "grs": 2722209.000000,
+    "opn": "2015-10",
+    "cnt": 461
+  },
+  {
+    "yr": "2014",
+    "rank": 172,
+    "tit": "The Raid 2",
+    "grs": 2627209.000000,
+    "opn": "2015-03",
+    "cnt": 954
+  },
+  {
+    "yr": "2014",
+    "rank": 173,
+    "tit": "Under the Skin (2014)",
+    "grs": 2614251.000000,
+    "opn": "2015-04",
+    "cnt": 176
+  },
+  {
+    "yr": "2014",
+    "rank": 174,
+    "tit": "The Admiral: Roaring Currents",
+    "grs": 2589811.000000,
+    "opn": "2015-08",
+    "cnt": 45
+  },
+  {
+    "yr": "2014",
+    "rank": 175,
+    "tit": "Dragon Ball Z: Battle of Gods",
+    "grs": 2553002.000000,
+    "opn": "2015-08",
+    "cnt": 692
+  },
+  {
+    "yr": "2014",
+    "rank": 176,
+    "tit": "Bang Bang",
+    "grs": 2546172.000000,
+    "opn": "2015-10",
+    "cnt": 271
+  },
+  {
+    "yr": "2014",
+    "rank": 177,
+    "tit": "Kick",
+    "grs": 2472695.000000,
+    "opn": "2015-07",
+    "cnt": 180
+  },
+  {
+    "yr": "2014",
+    "rank": 178,
+    "tit": "Kill the Messenger",
+    "grs": 2450846.000000,
+    "opn": "2015-10",
+    "cnt": 427
+  },
+  {
+    "yr": "2014",
+    "rank": 179,
+    "tit": "The Homesman",
+    "grs": 2429989.000000,
+    "opn": "2015-11",
+    "cnt": 222
+  },
+  {
+    "yr": "2014",
+    "rank": 180,
+    "tit": "Ode to My Father",
+    "grs": 2300121.000000,
+    "opn": "2015-12",
+    "cnt": 38
+  },
+  {
+    "yr": "2014",
+    "rank": 181,
+    "tit": "Love is Strange",
+    "grs": 2262223.000000,
+    "opn": "2015-08",
+    "cnt": 138
+  },
+  {
+    "yr": "2014",
+    "rank": 182,
+    "tit": "2 States",
+    "grs": 2238174.000000,
+    "opn": "2015-04",
+    "cnt": 137
+  },
+  {
+    "yr": "2014",
+    "rank": 183,
+    "tit": "Le Week-End",
+    "grs": 2225098.000000,
+    "opn": "2015-03",
+    "cnt": 157
+  },
+  {
+    "yr": "2014",
+    "rank": 184,
+    "tit": "Anchorman 2 (R-Rated Extended Cut)",
+    "grs": 2184339.000000,
+    "opn": "2015-02",
+    "cnt": 1317
+  },
+  {
+    "yr": "2014",
+    "rank": 185,
+    "tit": "2014 Oscar Nominated Short Films",
+    "grs": 2171849.000000,
+    "opn": "2015-01",
+    "cnt": 167
+  },
+  {
+    "yr": "2014",
+    "rank": 186,
+    "tit": "Words and Pictures",
+    "grs": 2171257.000000,
+    "opn": "2015-05",
+    "cnt": 216
+  },
+  {
+    "yr": "2014",
+    "rank": 187,
+    "tit": "Gloria (2014)",
+    "grs": 2107925.000000,
+    "opn": "2015-01",
+    "cnt": 110
+  },
+  {
+    "yr": "2014",
+    "rank": 188,
+    "tit": "The Immigrant",
+    "grs": 2025328.000000,
+    "opn": "2015-05",
+    "cnt": 150
+  },
+  {
+    "yr": "2014",
+    "rank": 189,
+    "tit": "Only Lovers Left Alive",
+    "grs": 1879534.000000,
+    "opn": "2015-04",
+    "cnt": 95
+  },
+  {
+    "yr": "2014",
+    "rank": 190,
+    "tit": "Tusk",
+    "grs": 1826705.000000,
+    "opn": "2015-09",
+    "cnt": 602
+  },
+  {
+    "yr": "2014",
+    "rank": 191,
+    "tit": "Tim's Vermeer",
+    "grs": 1671377.000000,
+    "opn": "2015-01",
+    "cnt": 129
+  },
+  {
+    "yr": "2014",
+    "rank": 192,
+    "tit": "Persecuted",
+    "grs": 1558836.000000,
+    "opn": "2015-07",
+    "cnt": 736
+  },
+  {
+    "yr": "2014",
+    "rank": 193,
+    "tit": "Fed Up",
+    "grs": 1538899.000000,
+    "opn": "2015-05",
+    "cnt": 104
+  },
+  {
+    "yr": "2014",
+    "rank": 194,
+    "tit": "Finding Vivian Maier",
+    "grs": 1514782.000000,
+    "opn": "2015-03",
+    "cnt": 97
+  },
+  {
+    "yr": "2014",
+    "rank": 195,
+    "tit": "Awake: The Life of Yogananda",
+    "grs": 1476867.000000,
+    "opn": "2015-10",
+    "cnt": 21
+  },
+  {
+    "yr": "2014",
+    "rank": 196,
+    "tit": "Pride (2014)",
+    "grs": 1446634.000000,
+    "opn": "2015-09",
+    "cnt": 124
+  },
+  {
+    "yr": "2014",
+    "rank": 197,
+    "tit": "Two Days, One Night",
+    "grs": 1433853.000000,
+    "opn": "2015-12",
+    "cnt": 120
+  },
+  {
+    "yr": "2014",
+    "rank": 198,
+    "tit": "Locke",
+    "grs": 1375769.000000,
+    "opn": "2015-04",
+    "cnt": 121
+  },
+  {
+    "yr": "2014",
+    "rank": 199,
+    "tit": "Gimme Shelter",
+    "grs": 1359910.000000,
+    "opn": "2015-01",
+    "cnt": 385
+  },
+  {
+    "yr": "2014",
+    "rank": 200,
+    "tit": "Force Majeure",
+    "grs": 1359497.000000,
+    "opn": "2015-10",
+    "cnt": 68
+  },
+  {
+    "yr": "2014",
+    "rank": 201,
+    "tit": "Jai Ho",
+    "grs": 1264515.000000,
+    "opn": "2015-01",
+    "cnt": 195
+  },
+  {
+    "yr": "2014",
+    "rank": 202,
+    "tit": "Singham Returns",
+    "grs": 1232018.000000,
+    "opn": "2015-08",
+    "cnt": 127
+  },
+  {
+    "yr": "2014",
+    "rank": 203,
+    "tit": "Repentance",
+    "grs": 1189612.000000,
+    "opn": "2015-02",
+    "cnt": 157
+  },
+  {
+    "yr": "2014",
+    "rank": 204,
+    "tit": "The Remaining",
+    "grs": 1169603.000000,
+    "opn": "2015-09",
+    "cnt": 85
+  },
+  {
+    "yr": "2014",
+    "rank": 205,
+    "tit": "Hector And The Search For Happiness",
+    "grs": 1124445.000000,
+    "opn": "2015-09",
+    "cnt": 183
+  },
+  {
+    "yr": "2014",
+    "rank": 206,
+    "tit": "The Rover",
+    "grs": 1114423.000000,
+    "opn": "2015-06",
+    "cnt": 608
+  },
+  {
+    "yr": "2014",
+    "rank": 207,
+    "tit": "Leviathan (2014)",
+    "grs": 1092800.000000,
+    "opn": "2015-12",
+    "cnt": 80
+  },
+  {
+    "yr": "2014",
+    "rank": 208,
+    "tit": "The Captive",
+    "grs": 1075178.000000,
+    "opn": "2015-09",
+    "cnt": 133
+  },
+  {
+    "yr": "2014",
+    "rank": 209,
+    "tit": "Laggies",
+    "grs": 1066981.000000,
+    "opn": "2015-10",
+    "cnt": 306
+  },
+  {
+    "yr": "2014",
+    "rank": 210,
+    "tit": "50 to 1",
+    "grs": 1064454.000000,
+    "opn": "2015-03",
+    "cnt": 133
+  },
+  {
+    "yr": "2014",
+    "rank": 211,
+    "tit": "Haider",
+    "grs": 1048143.000000,
+    "opn": "2015-10",
+    "cnt": 119
+  },
+  {
+    "yr": "2014",
+    "rank": 212,
+    "tit": "Third Person",
+    "grs": 1021398.000000,
+    "opn": "2015-06",
+    "cnt": 227
+  },
+  {
+    "yr": "2014",
+    "rank": 213,
+    "tit": "Stalingrad (2014)",
+    "grs": 1013945.000000,
+    "opn": "2015-02",
+    "cnt": 308
+  },
+  {
+    "yr": "2014",
+    "rank": 214,
+    "tit": "The Song",
+    "grs": 1009620.000000,
+    "opn": "2015-09",
+    "cnt": 340
+  },
+  {
+    "yr": "2014",
+    "rank": 215,
+    "tit": "Enemy",
+    "grs": 1008726.000000,
+    "opn": "2015-03",
+    "cnt": 120
+  },
+  {
+    "yr": "2014",
+    "rank": 216,
+    "tit": "The Babadook",
+    "grs": 950792.000000,
+    "opn": "2015-11",
+    "cnt": 80
+  },
+  {
+    "yr": "2014",
+    "rank": 217,
+    "tit": "Walking with the Enemy",
+    "grs": 923261.000000,
+    "opn": "2015-04",
+    "cnt": 258
+  },
+  {
+    "yr": "2014",
+    "rank": 218,
+    "tit": "Shaadi Ke Side Effects",
+    "grs": 921277.000000,
+    "opn": "2015-02",
+    "cnt": 108
+  },
+  {
+    "yr": "2014",
+    "rank": 219,
+    "tit": "Mas Negro Que La Noche",
+    "grs": 870063.000000,
+    "opn": "2015-09",
+    "cnt": 178
+  },
+  {
+    "yr": "2014",
+    "rank": 220,
+    "tit": "Particle Fever",
+    "grs": 869838.000000,
+    "opn": "2015-03",
+    "cnt": 27
+  },
+  {
+    "yr": "2014",
+    "rank": 221,
+    "tit": "Song of the Sea",
+    "grs": 857522.000000,
+    "opn": "2015-12",
+    "cnt": 48
+  },
+  {
+    "yr": "2014",
+    "rank": 222,
+    "tit": "Atlas Shrugged Part III: Who Is John Galt?",
+    "grs": 846704.000000,
+    "opn": "2015-09",
+    "cnt": 242
+  },
+  {
+    "yr": "2014",
+    "rank": 223,
+    "tit": "Kochadaiiyaan",
+    "grs": 817192.000000,
+    "opn": "2015-05",
+    "cnt": 161
+  },
+  {
+    "yr": "2014",
+    "rank": 224,
+    "tit": "Saw 10th Anniversary",
+    "grs": 815324.000000,
+    "opn": "2015-10",
+    "cnt": 2063
+  },
+  {
+    "yr": "2014",
+    "rank": 225,
+    "tit": "Life Itself",
+    "grs": 810454.000000,
+    "opn": "2015-07",
+    "cnt": 100
+  },
+  {
+    "yr": "2014",
+    "rank": 226,
+    "tit": "Nymphomaniac: Volume I",
+    "grs": 785896.000000,
+    "opn": "2015-03",
+    "cnt": 59
+  },
+  {
+    "yr": "2014",
+    "rank": 227,
+    "tit": "Breakup Buddies",
+    "grs": 777896.000000,
+    "opn": "2015-10",
+    "cnt": 24
+  },
+  {
+    "yr": "2014",
+    "rank": 228,
+    "tit": "Palo Alto",
+    "grs": 767732.000000,
+    "opn": "2015-05",
+    "cnt": 57
+  },
+  {
+    "yr": "2014",
+    "rank": 229,
+    "tit": "Ek Villain",
+    "grs": 730530.000000,
+    "opn": "2015-06",
+    "cnt": 104
+  },
+  {
+    "yr": "2014",
+    "rank": 230,
+    "tit": "Land Ho!",
+    "grs": 727594.000000,
+    "opn": "2015-07",
+    "cnt": 73
+  },
+  {
+    "yr": "2014",
+    "rank": 231,
+    "tit": "Yves Saint Laurent",
+    "grs": 723593.000000,
+    "opn": "2015-06",
+    "cnt": 24
+  },
+  {
+    "yr": "2014",
+    "rank": 232,
+    "tit": "Khoobsurat",
+    "grs": 710508.000000,
+    "opn": "2015-09",
+    "cnt": 61
+  },
+  {
+    "yr": "2014",
+    "rank": 233,
+    "tit": "Holiday (2014)",
+    "grs": 706893.000000,
+    "opn": "2015-06",
+    "cnt": 144
+  },
+  {
+    "yr": "2014",
+    "rank": 234,
+    "tit": "Men, Women & Children",
+    "grs": 705908.000000,
+    "opn": "2015-10",
+    "cnt": 608
+  },
+  {
+    "yr": "2014",
+    "rank": 235,
+    "tit": "The Tale of The Princess Kaguya",
+    "grs": 703232.000000,
+    "opn": "2015-10",
+    "cnt": 29
+  },
+  {
+    "yr": "2014",
+    "rank": 236,
+    "tit": "Frankie & Alice (2014)",
+    "grs": 695876.000000,
+    "opn": "2015-04",
+    "cnt": 171
+  },
+  {
+    "yr": "2014",
+    "rank": 237,
+    "tit": "Jodorowsky's Dune",
+    "grs": 647280.000000,
+    "opn": "2015-03",
+    "cnt": 61
+  },
+  {
+    "yr": "2014",
+    "rank": 238,
+    "tit": "Hasee Toh Phasee",
+    "grs": 646035.000000,
+    "opn": "2015-02",
+    "cnt": 88
+  },
+  {
+    "yr": "2014",
+    "rank": 239,
+    "tit": "Frank",
+    "grs": 645186.000000,
+    "opn": "2015-08",
+    "cnt": 75
+  },
+  {
+    "yr": "2014",
+    "rank": 240,
+    "tit": "Mary Kom",
+    "grs": 621300.000000,
+    "opn": "2015-09",
+    "cnt": 139
+  },
+  {
+    "yr": "2014",
+    "rank": 241,
+    "tit": "Finding Fanny",
+    "grs": 615691.000000,
+    "opn": "2015-09",
+    "cnt": 121
+  },
+  {
+    "yr": "2014",
+    "rank": 242,
+    "tit": "The Signal (2014)",
+    "grs": 600896.000000,
+    "opn": "2015-06",
+    "cnt": 204
+  },
+  {
+    "yr": "2014",
+    "rank": 243,
+    "tit": "The Disappearance of Eleanor Rigby",
+    "grs": 587774.000000,
+    "opn": "2015-09",
+    "cnt": 139
+  },
+  {
+    "yr": "2014",
+    "rank": 244,
+    "tit": "Back in Time (Congcong Nanian)",
+    "grs": 569280.000000,
+    "opn": "2015-12",
+    "cnt": 20
+  },
+  {
+    "yr": "2014",
+    "rank": 245,
+    "tit": "Forrest Gump (IMAX)",
+    "grs": 557683.000000,
+    "opn": "2015-09",
+    "cnt": 337
+  },
+  {
+    "yr": "2014",
+    "rank": 246,
+    "tit": "The Attorney",
+    "grs": 557236.000000,
+    "opn": "2015-02",
+    "cnt": 27
+  },
+  {
+    "yr": "2014",
+    "rank": 247,
+    "tit": "23 Blast",
+    "grs": 549185.000000,
+    "opn": "2015-10",
+    "cnt": 617
+  },
+  {
+    "yr": "2014",
+    "rank": 248,
+    "tit": "On Any Sunday: The Next Chapter",
+    "grs": 543044.000000,
+    "opn": "2015-11",
+    "cnt": 231
+  },
+  {
+    "yr": "2014",
+    "rank": 249,
+    "tit": "A Matter of Faith",
+    "grs": 530604.000000,
+    "opn": "2015-10",
+    "cnt": 52
+  },
+  {
+    "yr": "2014",
+    "rank": 250,
+    "tit": "Highway (2014)",
+    "grs": 529136.000000,
+    "opn": "2015-02",
+    "cnt": 97
+  },
+  {
+    "yr": "2014",
+    "rank": 251,
+    "tit": "Dom Hemingway",
+    "grs": 523511.000000,
+    "opn": "2015-04",
+    "cnt": 129
+  },
+  {
+    "yr": "2014",
+    "rank": 252,
+    "tit": "A Hard Day's Night (2014 re-release)",
+    "grs": 515005.000000,
+    "opn": "2015-07",
+    "cnt": 136
+  },
+  {
+    "yr": "2014",
+    "rank": 253,
+    "tit": "The One I Love",
+    "grs": 513447.000000,
+    "opn": "2015-08",
+    "cnt": 82
+  },
+  {
+    "yr": "2014",
+    "rank": 254,
+    "tit": "Tracks (2014)",
+    "grs": 510007.000000,
+    "opn": "2015-09",
+    "cnt": 67
+  },
+  {
+    "yr": "2014",
+    "rank": 255,
+    "tit": "The Two Faces of January",
+    "grs": 507463.000000,
+    "opn": "2015-09",
+    "cnt": 59
+  },
+  {
+    "yr": "2014",
+    "rank": 256,
+    "tit": "Last Days in Vietnam",
+    "grs": 466114.000000,
+    "opn": "2015-09",
+    "cnt": 25
+  },
+  {
+    "yr": "2014",
+    "rank": 257,
+    "tit": "A Girl Walks Home Alone at Night",
+    "grs": 444558.000000,
+    "opn": "2015-11",
+    "cnt": 19
+  },
+  {
+    "yr": "2014",
+    "rank": 258,
+    "tit": "In Secret",
+    "grs": 444179.000000,
+    "opn": "2015-02",
+    "cnt": 266
+  },
+  {
+    "yr": "2014",
+    "rank": 259,
+    "tit": "But Always (Yi Sheng Yi Shi)",
+    "grs": 430760.000000,
+    "opn": "2015-09",
+    "cnt": 20
+  },
+  {
+    "yr": "2014",
+    "rank": 260,
+    "tit": "Beijing Love Story",
+    "grs": 428318.000000,
+    "opn": "2015-02",
+    "cnt": 12
+  },
+  {
+    "yr": "2014",
+    "rank": 261,
+    "tit": "Cold in July",
+    "grs": 427418.000000,
+    "opn": "2015-05",
+    "cnt": 73
+  },
+  {
+    "yr": "2014",
+    "rank": 262,
+    "tit": "The German Doctor",
+    "grs": 418392.000000,
+    "opn": "2015-04",
+    "cnt": 39
+  },
+  {
+    "yr": "2014",
+    "rank": 263,
+    "tit": "The Pirates",
+    "grs": 415775.000000,
+    "opn": "2015-09",
+    "cnt": 25
+  },
+  {
+    "yr": "2014",
+    "rank": 264,
+    "tit": "She's Beautiful When She's Angry",
+    "grs": 396648.000000,
+    "opn": "2015-12",
+    "cnt": 19
+  },
+  {
+    "yr": "2014",
+    "rank": 265,
+    "tit": "Goodbye to Language",
+    "grs": 390099.000000,
+    "opn": "2015-10",
+    "cnt": 7
+  },
+  {
+    "yr": "2014",
+    "rank": 266,
+    "tit": "Humpty Sharma Ki Dulhania",
+    "grs": 380011.000000,
+    "opn": "2015-07",
+    "cnt": 101
+  },
+  {
+    "yr": "2014",
+    "rank": 267,
+    "tit": "Women Who Flirt (Sajiao Nvren)",
+    "grs": 375495.000000,
+    "opn": "2015-11",
+    "cnt": 27
+  },
+  {
+    "yr": "2014",
+    "rank": 268,
+    "tit": "Venus in Fur",
+    "grs": 373605.000000,
+    "opn": "2015-06",
+    "cnt": 45
+  },
+  {
+    "yr": "2014",
+    "rank": 269,
+    "tit": "Joe (2014)",
+    "grs": 373375.000000,
+    "opn": "2015-04",
+    "cnt": 48
+  },
+  {
+    "yr": "2014",
+    "rank": 270,
+    "tit": "Glen Campbell... I'll Be Me",
+    "grs": 365422.000000,
+    "opn": "2015-10",
+    "cnt": 18
+  },
+  {
+    "yr": "2014",
+    "rank": 271,
+    "tit": "Omar",
+    "grs": 356000.000000,
+    "opn": "2015-02",
+    "cnt": 53
+  },
+  {
+    "yr": "2014",
+    "rank": 272,
+    "tit": "The Face of Love",
+    "grs": 350006.000000,
+    "opn": "2015-03",
+    "cnt": 42
+  },
+  {
+    "yr": "2014",
+    "rank": 273,
+    "tit": "Le Chef",
+    "grs": 342667.000000,
+    "opn": "2015-06",
+    "cnt": 19
+  },
+  {
+    "yr": "2014",
+    "rank": 274,
+    "tit": "Jimi: All Is By My Side",
+    "grs": 340911.000000,
+    "opn": "2015-09",
+    "cnt": 75
+  },
+  {
+    "yr": "2014",
+    "rank": 275,
+    "tit": "Chinese Puzzle",
+    "grs": 338523.000000,
+    "opn": "2015-05",
+    "cnt": 29
+  },
+  {
+    "yr": "2014",
+    "rank": 276,
+    "tit": "I Origins",
+    "grs": 336472.000000,
+    "opn": "2015-07",
+    "cnt": 122
+  },
+  {
+    "yr": "2014",
+    "rank": 277,
+    "tit": "Like Father, Like Son (2014)",
+    "grs": 334616.000000,
+    "opn": "2015-01",
+    "cnt": 35
+  },
+  {
+    "yr": "2014",
+    "rank": 278,
+    "tit": "The Guest (2014)",
+    "grs": 332890.000000,
+    "opn": "2015-09",
+    "cnt": 53
+  },
+  {
+    "yr": "2014",
+    "rank": 279,
+    "tit": "Elaine Stritch: Shoot Me",
+    "grs": 327452.000000,
+    "opn": "2015-02",
+    "cnt": 41
+  },
+  {
+    "yr": "2014",
+    "rank": 280,
+    "tit": "Nymphomaniac: Volume II",
+    "grs": 327167.000000,
+    "opn": "2015-04",
+    "cnt": 31
+  },
+  {
+    "yr": "2014",
+    "rank": 281,
+    "tit": "Stranger By the Lake",
+    "grs": 325196.000000,
+    "opn": "2015-01",
+    "cnt": 16
+  },
+  {
+    "yr": "2014",
+    "rank": 282,
+    "tit": "On My Way",
+    "grs": 317324.000000,
+    "opn": "2015-03",
+    "cnt": 32
+  },
+  {
+    "yr": "2014",
+    "rank": 283,
+    "tit": "Happy Ending",
+    "grs": 313770.000000,
+    "opn": "2015-11",
+    "cnt": 129
+  },
+  {
+    "yr": "2014",
+    "rank": 284,
+    "tit": "The Hornet's Nest",
+    "grs": 312706.000000,
+    "opn": "2015-05",
+    "cnt": 57
+  },
+  {
+    "yr": "2014",
+    "rank": 285,
+    "tit": "I Am Eleven",
+    "grs": 310116.000000,
+    "opn": "2015-09",
+    "cnt": 16
+  },
+  {
+    "yr": "2014",
+    "rank": 286,
+    "tit": "A Five Star Life",
+    "grs": 306917.000000,
+    "opn": "2015-07",
+    "cnt": 20
+  },
+  {
+    "yr": "2014",
+    "rank": 287,
+    "tit": "Mood Indigo",
+    "grs": 303187.000000,
+    "opn": "2015-07",
+    "cnt": 37
+  },
+  {
+    "yr": "2014",
+    "rank": 288,
+    "tit": "Innocence (2014)",
+    "grs": 294039.000000,
+    "opn": "2015-09",
+    "cnt": 490
+  },
+  {
+    "yr": "2014",
+    "rank": 289,
+    "tit": "The Dance of Reality",
+    "grs": 293680.000000,
+    "opn": "2015-05",
+    "cnt": 15
+  },
+  {
+    "yr": "2014",
+    "rank": 290,
+    "tit": "Antarctica: A Year on Ice",
+    "grs": 288757.000000,
+    "opn": "2015-11",
+    "cnt": 30
+  },
+  {
+    "yr": "2014",
+    "rank": 291,
+    "tit": "The Last of Robin Hood",
+    "grs": 288545.000000,
+    "opn": "2015-08",
+    "cnt": 78
+  },
+  {
+    "yr": "2014",
+    "rank": 292,
+    "tit": "Elsa & Fred (2014)",
+    "grs": 285863.000000,
+    "opn": "2015-11",
+    "cnt": 34
+  },
+  {
+    "yr": "2014",
+    "rank": 293,
+    "tit": "Kundo: Age of the Rampant",
+    "grs": 280958.000000,
+    "opn": "2015-08",
+    "cnt": 28
+  },
+  {
+    "yr": "2014",
+    "rank": 294,
+    "tit": "20,000 Days on Earth",
+    "grs": 279558.000000,
+    "opn": "2015-09",
+    "cnt": 28
+  },
+  {
+    "yr": "2014",
+    "rank": 295,
+    "tit": "The Unknown Known",
+    "grs": 276497.000000,
+    "opn": "2015-04",
+    "cnt": 80
+  },
+  {
+    "yr": "2014",
+    "rank": 296,
+    "tit": "Main Tera Hero",
+    "grs": 274579.000000,
+    "opn": "2015-04",
+    "cnt": 77
+  },
+  {
+    "yr": "2014",
+    "rank": 297,
+    "tit": "Night Moves",
+    "grs": 271755.000000,
+    "opn": "2015-05",
+    "cnt": 56
+  },
+  {
+    "yr": "2014",
+    "rank": 298,
+    "tit": "Love on the Cloud (Wei Ai)",
+    "grs": 271734.000000,
+    "opn": "2015-12",
+    "cnt": 17
+  },
+  {
+    "yr": "2014",
+    "rank": 299,
+    "tit": "The Love Punch",
+    "grs": 266588.000000,
+    "opn": "2015-05",
+    "cnt": 121
+  },
+  {
+    "yr": "2014",
+    "rank": 300,
+    "tit": "Life of Crime",
+    "grs": 265452.000000,
+    "opn": "2015-08",
+    "cnt": 37
+  }
+]
