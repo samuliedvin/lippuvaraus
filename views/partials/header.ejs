@@ -9,9 +9,19 @@
           <h3 class="masthead-brand">Bio Kex</h3>
           <nav>
             <ul class="nav masthead-nav">
-              <li><a href="#" data-toggle="modal" data-target="#signup-modal">Rekisteröidy</a></li>
-              <li><a href="#" data-toggle="modal" data-target="#login-modal">Kirjaudu</a></li>
-              <li><a href="#">Tietoja</a></li>
+                <li><a href="#">Tietoja</a></li>
+
+                <% if (user != null) { %>
+                    <li>
+                        <a href="/profile">Hei <%= user.local.email  %></a>
+                    </li>
+                    <li>
+                        <a href="/logout">Kirjaudu ulos</a>
+                    </li>
+                <% } else { %>
+                    <li><a href="#" data-toggle="modal" data-target="#signup-modal">Rekisteröidy</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#login-modal">Kirjaudu</a></li>
+                <% } %>
             </ul>
           </nav>
         </div>

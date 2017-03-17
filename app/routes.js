@@ -10,9 +10,23 @@ module.exports = function(app, passport) {
 
     app.get('/', function(req, res) {
         var movies = JSON.parse(fs.readFileSync('./app/movies.json', 'utf8'));
-        res.render('index.ejs', {
-            movies : movies
-        });
+        var theaters = JSON.parse(fs.readFileSync('./app/theaters.json', 'utf8'));
+
+        if (req.user) {
+            // logged in
+            res.render('index.ejs', {
+                movies : movies,
+                theaters : theaters,
+                user : req.user
+            });
+        } else {
+            // not logged in
+            res.render('index.ejs', {
+                movies : movies,
+                theaters : theaters,
+                user : null
+            });
+        }
     })
 
     // =====================================
@@ -20,15 +34,14 @@ module.exports = function(app, passport) {
     // =====================================
     // show the login form
     app.get('/login', function(req, res) {
-
         // render the page and pass in any flash data if it exists
         res.render('login.ejs', { message: req.flash('loginMessage') });
     });
 
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        successRedirect : '/', // redirect to the secure profile section
+        failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
 
