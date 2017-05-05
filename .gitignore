@@ -1,3 +1,6 @@
+# WebStorm metafiles
+.idea/
+
 # Logs
 logs
 *.log
