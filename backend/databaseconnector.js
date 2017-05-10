@@ -2,21 +2,21 @@
 "use strict";
 
 // node modules
-var mysql = require('mysql');
+var mysql = require('mysql'),
+    crypto = require('crypto');
 
 // create MySQL connection object
 const conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'webuser',
-    password: 'rullakkebab',
-    database: 'mydb'
+    host: 'us-cdbr-iron-east-03.cleardb.net',
+    user: 'b34062e6605ed9',
+    password: 'ca07c783',
+    database: 'heroku_4dc3cbbfb8fc79c'
 });
 
 // connect to db
 conn.connect(function (err) {
     if(err) {
         console.erroror(err);
-        return;
     } else {
         console.log("Connection to database established successfully");
     }
@@ -30,12 +30,20 @@ conn.connect(function (err) {
  * @returns {boolean} True if successful
  */
 var createUser = function(name, email, passwd, cb) {
-    if(userExists(name)) {
-        cb("User exists already!");
-        return;
-    }
-    let query = "INSERT INTO User(name, email, password) VALUES(?,?,?);";
-    commitQuery(query, [name, email, passwd], cb);
+    userExists(name, function (err, res) {
+        if(err) {
+            cb(err);
+        } else {
+            if(res === true) {
+                cb("User exists already");
+            } else {
+                // user does not exists, create new
+                let query = "INSERT INTO User(name, email, password) VALUES(?,?,?);";
+                let hashedPwd = encryptPwd(passwd);
+                commitQuery(query, [name, email, hashedPwd], cb);
+            }
+        }
+    });
 };
 
 /**
@@ -67,24 +75,45 @@ var updateUser = function (idUser, email, passwd, cb) {
  * @param time
  * @param idAuditorium
  */
-var admin_newScreening = function (idMovie, time, idAuditorium, cb) {
+var admin_addScreening = function (idMovie, time, idAuditorium, cb) {
     getMovie(idMovie, function (err, res) {
         if(err) {
             console.error("Movie " + idMovie + " was requested by newScreening but not found");
             cb("Invalid movie id");
         } else {
-            commitQuery("INSERT INTO Screening(idMovie, time, idAuditorium) VALUES(?,?,?);", [idMovie, time, idAuditorium], cb);
+            let mysqlTime = stringToMySQLDateTime(time);
+            commitQuery("INSERT INTO Screening(idMovie, time, idAuditorium) VALUES(?,?,?);",
+                [idMovie, mysqlTime, idAuditorium], cb);
         }
     });
 };
 
 /**
- * Delete screening
+ * Delete screening from the database
  * @param idScreening
  * @param cb
  */
 var admin_deleteScreening = function (idScreening, cb) {
-    commitQuery("DELETE FROM Screening WHERE idScreening = ?;", [idScreening], cb);
+    commitQuery("DELETE FROM Screening WHERE idScreening = ?;",
+        [idScreening], cb);
+};
+
+/**
+ * Add new theater to database
+ * @param name
+ * @param cb
+ */
+var admin_addTheater = function (name, cb) {
+    commitQuery("INSERT INTO Theater(name) VALUES(?);", [name], cb);
+};
+
+/**
+ * Delete theater
+ * @param idTheater
+ * @param cb
+ */
+var admin_deleteTheater = function (idTheater, cb) {
+    commitQuery("DELETE FROM Theater WHERE idTheater = ?;", [idTheater], cb);
 };
 
 /**
@@ -95,9 +124,44 @@ var admin_deleteScreening = function (idScreening, cb) {
  */
 var admin_addMovie = function (title, pic_url, cb) {
     // todo add pic
-    commitQuery("INSERT INTO Movie(title) VALUES(?);"
-        , [title], cb);
-}
+    commitQuery("INSERT INTO Movie(title) VALUES(?);",
+    [title], cb);
+};
+
+/**
+ * Delete movie
+ * @param idMovie
+ * @param cb
+ */
+var admin_deleteMovie = function (idMovie, cb) {
+    commitQuery("DELETE FROM Movie WHERE idMovie = ?;",
+        [idMovie], cb);
+};
+
+/**
+ * Clean up the database
+ * Remove old reservations (those which have passed) and related screenings
+ */
+var admin_cleanup = function () {
+    // clean up old bookings
+    commitQuery("DELETE FROM Booking WHERE idScreening IN " +
+        "(SELECT idScreening FROM Screening WHERE DATE(time) < DATE(NOW()));", [], function(err, res) {
+        if(err) {
+            console.error(err);
+            console.error("Failed bookings cleanup");
+        } else {
+            // clean up old screenings
+            commitQuery("DELETE FROM Screening WHERE DATE(time) < DATE(NOW());", [], function (err, res) {
+                if(err) {
+                    console.error(err);
+                    console.error("Failed screening cleanup");
+                } else {
+                    console.log("Cleanup successful");
+                }
+            });
+        }
+    });
+};
 
 /**
  * Fetch screenings of a specific movie from a specific theater
@@ -105,11 +169,28 @@ var admin_addMovie = function (title, pic_url, cb) {
  * @param idTheater
  * @param cb
  */
-var getScreenings = function (idMovie, idTheater, cb) {
-    let query = "SELECT * FROM Screening WHERE idMovie = ? AND idAuditorium IN " +
+var getScreeningsByTheaterMovie = function (idMovie, idTheater, cb) {
+    let query = "SELECT * FROM Screening WHERE DATE(time) >= DATE(NOW()) AND idMovie = ? AND idAuditorium IN " +
         "(SELECT idAuditorium FROM Auditorium WHERE idTheater = ?);";
     commitQuery(query, [idMovie, idTheater], cb);
+};
+
+/**
+ * Get all screenings for a specific movie
+ * @param idMovie
+ * @param cb
+ */
+var getMovieScreenings = function (idMovie, cb) {
+    commitQuery("SELECT * FROM Screenings WHERE idMovie = ?;", [idMovie], cb);
 }
+
+/**
+ * Get all screenings
+ * @param cb
+ */
+var getAllScreenings = function (cb) {
+    commitQuery("SELECT * FROM Screening;", [], cb);
+};
 
 /**
  * Get a single movie by it's id
@@ -121,6 +202,14 @@ var getMovie = function (idMovie, cb) {
 };
 
 /**
+ * Get all movies
+ * @param cb
+ */
+var getMovies = function (cb) {
+    commitQuery("SELECT * FROM Movie;", [], cb);
+};
+
+/**
  * Find movies by their name of part of their name
  * Case insensitive
  * @param name
@@ -128,7 +217,7 @@ var getMovie = function (idMovie, cb) {
  */
 var findMovies = function (name, cb) {
     commitQuery("SELECT * FROM Movie WHERE name COLLATE UTF8_GENERAL_CI LIKE '?%';", [name], cb);
-}
+};
 
 /**
  * Delete a reservation from the database
@@ -136,24 +225,21 @@ var findMovies = function (name, cb) {
  * @param idReservation
  * @param cb
  */
-var deleteReservation = function(idUser, idReservation, cb) {
+var deleteBooking = function(idUser, idReservation, cb) {
     // ebin callback hell
     commitQuery("SELECT * FROM Reservation WHERE idReservation = ?;", [idReservation], function (err, res) {
         if(err) {
             cb("Failed");
-            return;
         } else {
             if(res.length !== 1) {
                 console.error("Invalid number of Reservations were returned: " + res.length);
                 cb("Failed");
-                return;
             } else {
                 // one reservation was found
                 if(res[0].idUser !== idUser) {
                     // someone tried to delete other user's reservation
                     console.error("WARNING: User " + idUser + " tried to delete reservation " + idReservation + " by user " + res[0].idUser);
                     cb("Failed");
-                    return;
                 } else {
                     // everything is good, proceed with deleting the reservation
                     commitQuery("DELETE FROM Reservation WHERE idReservation = ?;", [idReservation], cb);
@@ -282,21 +368,6 @@ var commitQuery = function(query, params, cb) {
 };
 
 /**
- * Return reserved seats as the response
- * @param idScreening Screening ID
- * @param cb Callback, ideally the response object for Express
- */
-var getReservedSeats = function(idScreening, cb) {
-    getReservedSeats(idScreening, function(err, res) {
-        if(err) {
-            cb(err);
-        } else {
-            cb(null, res);
-        }
-    })
-};
-
-/**
  * Get ALL screenings
  * @param cb
  */
@@ -308,15 +379,15 @@ var getScreenings = function (cb) {
  * Get screenings from a given date range
  * @param cb
  */
-var getScreenings = function (datestart, dateend, cb) {
+var getScreeningsByDate = function (datestart, dateend, cb) {
     commitQuery("SELECT * FROM Screening WHERE DATE(time) BETWEEN ? AND ?;", [datestart, dateend], cb);
 };
 
-var getuserBookings = function (idUser, cb) {
+var getUserBookings = function (idUser, cb) {
     commitQuery("SELECT * FROM Booking WHERE idUser = ?", [idUser], cb);
 };
 
-var getScreeningReservations = function (idScreening, cb) {
+var getScreeningBookings = function (idScreening, cb) {
     commitQuery("SELECT * FROM Booking WHERE idScreening = ?;", [idScreening], cb);
 };
 
@@ -326,21 +397,18 @@ var getScreeningReservations = function (idScreening, cb) {
  * @param cb
  */
 var userExists = function(name, cb) {
-    let query = "SELECT name FROM User;";
-    conn.query(query, function (err, res) {
-        if(err) {
-            cb("Error while querying user");
-            console.error(err);
+    let query = "SELECT name FROM User WHERE name = ?;";
+    commitQuery(query, [name], function (err, res) {
+        if(err){
+            cb(err);
         } else {
-            for(let user of res) {
-                if(name.toLowerCase() === user.name.toLowerCase()) {
-                    cb(null, true);
-                    return;
-                }
+            if(res.length > 0) {
+                cb(null, true);
+            } else {
+                cb(null, false);
             }
         }
-        cb(null, false);
-    });
+    })
 };
 
 /**
@@ -370,12 +438,112 @@ var stringToMySQLDateTime = function (date) {
     return str.toISOString().slice(0, 19).replace('T', ' ');
 }
 
-// todo
-createUser("sibal", 'asd', "asffas");
-// todo
-closeConnection();
+/**
+ * Utility function, to encrypt pwd with SHA256
+ * @param pwd
+ * @returns {string} encrypted pwd in base64
+ */
+function encryptPwd(pwd) {
+    return crypto.createHash('sha256').update(pwd).digest('base64');
+}
+
+/**
+ * Read system line
+ * @param cb
+ */
+function readLine(cb) {
+    var stdin = process.openStdin();
+    stdin.addListener("data", function(data) {
+        cb(data.toString().trim());
+    })
+}
+
+/**
+ * User authentication system
+ * @param name
+ * @param passwd
+ * @param cb Callback, result is true if authentication was successful, false if given password was wrong
+ */
+var authenticateUser = function(name, passwd, cb) {
+    let query = "SELECT password FROM User WHERE name = ?;";
+    commitQuery(query, [name], function (err, res) {
+        if(err) {
+            console.error("Login failed: " + err);
+            cb(err);
+        } else {
+            // encrypt password
+            var encpwd = encryptPwd();
+            if(encpwd === res[0].password) {
+                // authentication successfull
+                cb(null, true);
+            } else {
+                // wrong password
+                cb(null, false);
+            }
+        }
+    });
+};
+
+// console.log("Everything up, add new movie");
+// readLine(function (data) {
+//     admin_addMovie(data, null, (err, res) => {
+//         if(err) console.error(err);
+//         console.log(res);
+//     })
+// });
+
+getMovie(1, (err, res) => {
+    console.log(res);
+});
 
 // define the exported API
 module.exports = {
+
+    // admin API
+    admin: {
+        deleteMovie: admin_deleteMovie,
+        addTheater: admin_addTheater,
+        addMovie: admin_addMovie,
+        deleteTheather: admin_deleteTheater,
+        addScreening: admin_addScreening,
+        deleteScreening: admin_deleteScreening,
+        cleanup: admin_cleanup,
+    },
+
+    // connection control
+    closeConnection,
+
+    // regular API
+    authenticateUser,
+    createUser,
+    deleteUser,
+    updateUser,
+    userExists,
+
+    // screenings
+    getScreenings,
+    getScreeningsByDate,
+    getAllScreenings,
+    getMovieScreenings,
+    getScreeningsByTheaterMovie,
+
+    // bookings
+    getBookings,
+    deleteBooking,
+    createBooking,
+    getScreeningBookings,
+    getUserBookings,
+
+    // movies
+    getMovie,
+    getMovies,
+    findMovies,
+
+    // theaters
+    getThreaters,
+
+    // seats
+    getReservedSeats,
+    getAuditoriumSeats,
 
 };
