@@ -81,9 +81,9 @@ var admin_addScreening = function (idMovie, time, idAuditorium, cb) {
             console.error("Movie " + idMovie + " was requested by newScreening but not found");
             cb("Invalid movie id");
         } else {
-            let mysqlTime = stringToMySQLDateTime(time);
+            //let mysqlTime = stringToMySQLDateTime(time);
             commitQuery("INSERT INTO Screening(idMovie, time, idAuditorium) VALUES(?,?,?);",
-                [idMovie, mysqlTime, idAuditorium], cb);
+                [idMovie, time, idAuditorium], cb);
         }
     });
 };
@@ -126,6 +126,10 @@ var admin_addMovie = function (title, pic_url, cb) {
     // todo add pic
     commitQuery("INSERT INTO Movie(title) VALUES(?);",
     [title], cb);
+};
+
+var admin_addSeat = function (row, number, idAuditorium, cb) {
+    commitQuery("INSERT INTO Seat(row, number, idAuditorium) VALUES(?,?,?);", [row, number, idAuditorium], cb);
 };
 
 /**
@@ -200,6 +204,10 @@ var getAllScreenings = function (cb) {
 var getMovie = function (idMovie, cb) {
     commitQuery("SELECT * FROM Movie WHERE idMovie = ?;", [idMovie], cb);
 };
+
+var deleteMovie = function(idMovie, cb) {
+    commitQuery("DELETE FROM Movie WHERE idMovie = ?;", [idMovie], cb);
+}
 
 /**
  * Get all movies
@@ -328,8 +336,20 @@ var getBookings = function(idScreening, cb) {
  * Get all threaters
  * @param cb
  */
-var getThreaters = function (cb) {
+var getTheaters = function (cb) {
     commitQuery("SELECT * FROM Theater;", [], cb);
+};
+
+var getSeats = function(cb) {
+    commitQuery("SELECT * FROM Seat;", [], cb);
+};
+
+var getUsers = function(cb) {
+    commitQuery("SELECT idUser, name, email FROM User;", [], cb);
+};
+
+var getAuditoriums = function (cb) {
+    commitQuery("SELECT * FROM Auditorium;", [], cb);
 };
 
 /**
@@ -484,6 +504,10 @@ var authenticateUser = function(name, passwd, cb) {
     });
 };
 
+var admin_commitGereralQuery = function (query, values, cb) {
+    commitQuery(query, values, cb);
+};
+
 // console.log("Everything up, add new movie");
 // readLine(function (data) {
 //     admin_addMovie(data, null, (err, res) => {
@@ -492,9 +516,6 @@ var authenticateUser = function(name, passwd, cb) {
 //     })
 // });
 
-getMovie(1, (err, res) => {
-    console.log(res);
-});
 
 // define the exported API
 module.exports = {
@@ -507,6 +528,8 @@ module.exports = {
         deleteTheather: admin_deleteTheater,
         addScreening: admin_addScreening,
         deleteScreening: admin_deleteScreening,
+        addSeat: admin_addSeat,
+        generalQuery: admin_commitGereralQuery,
         cleanup: admin_cleanup,
     },
 
@@ -519,6 +542,7 @@ module.exports = {
     deleteUser,
     updateUser,
     userExists,
+    getUsers,
 
     // screenings
     getScreenings,
@@ -538,11 +562,16 @@ module.exports = {
     getMovie,
     getMovies,
     findMovies,
+    deleteMovie,
 
     // theaters
-    getThreaters,
+    getTheaters,
+
+    // auditoriums
+    getAuditoriums,
 
     // seats
+    getSeats,
     getReservedSeats,
     getAuditoriumSeats,
 
