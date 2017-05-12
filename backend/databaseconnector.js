@@ -5,22 +5,44 @@
 var mysql = require('mysql'),
     crypto = require('crypto');
 
-// create MySQL connection object
-const conn = mysql.createConnection({
-    host: 'us-cdbr-iron-east-03.cleardb.net',
-    user: 'b34062e6605ed9',
-    password: 'ca07c783',
-    database: 'heroku_4dc3cbbfb8fc79c'
-});
+var conn;
 
-// connect to db
-conn.connect(function (err) {
-    if(err) {
-        console.erroror(err);
-    } else {
-        console.log("Connection to database established successfully");
+function getConnection() {
+
+    // if connection exists, use it
+    if(conn) {
+        return conn;
     }
-});
+
+    console.log('Connecting to db...');
+
+    // create MySQL connection object
+    conn = mysql.createConnection({
+        host: 'us-cdbr-iron-east-03.cleardb.net',
+        user: 'b34062e6605ed9',
+        password: 'ca07c783',
+        database: 'heroku_4dc3cbbfb8fc79c'
+    });
+
+    conn.on('error', function (err) {
+        console.error(err);
+        console.log('Closing connection to db');
+        conn.end(function (err) {
+        });
+        conn = null;
+    });
+
+    // connect to db
+    conn.connect(function (err) {
+        if(err) {
+            console.error(err);
+        } else {
+            console.log("Connection to database established successfully");
+        }
+    });
+
+    return conn;
+}
 
 /**
  * Create new user to system
@@ -543,6 +565,7 @@ module.exports = {
     updateUser,
     userExists,
     getUsers,
+    encryptPwd,
 
     // screenings
     getScreenings,
@@ -574,5 +597,7 @@ module.exports = {
     getSeats,
     getReservedSeats,
     getAuditoriumSeats,
+
+    getConnection,
 
 };

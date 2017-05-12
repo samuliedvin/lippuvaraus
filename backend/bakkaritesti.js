@@ -3,9 +3,20 @@
  */
 'use strict';
 
-var db = require('./databaseconnector');
-var express = require('express')
-var app = express()
+const db = require('./databaseconnector');
+const express = require('express')
+const authentication = require('express-authentication');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+
+const app = express();
+
+// public files
+app.use(express.static('public'));
+app.use('/images', express.static('backend/images'));
+app.use(session({ secret: 'turunyliopisto', cookie: { maxAge: 30 * 1000 * 60 }}));
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 /**
  * Allow CORS requests from other hosts
@@ -17,10 +28,58 @@ app.use(function(req, res, next) {
 });
 
 /**
+ * Check authentication if trying to access secure page
+ */
+app.use(function(req, res, next) {
+    console.log('checkAuth ' + req.url);
+    if (/.*\/admin.*/.test(req.url) && (!req.session || !req.session.authenticated)) {
+        res.status(403).send('YOU SHALL NOT PASS');
+        return;
+    }
+    next();
+});
+
+/**
+ * Serve admin panel
+ */
+app.get('/admin', function (req, res) {
+    res.sendfile('backend/public/adminpanel.html');
+});
+
+/**
+ * Serve login page
+ */
+app.get('/login', function (req, res) {
+    res.sendfile('backend/public/login.html');
+});
+
+app.get('/logout', function (req, res) {
+    req.session.destroy();
+    res.redirect('/login');
+});
+
+/**
+ * Handle login request
+ */
+app.post('/login', function(req, res) {
+    console.log(req.body);
+    if (req.body.user && req.body.user === 'admin' && req.body.pwd && req.body.pwd === 'admin') {
+        req.session.authenticated = true;
+        res.redirect('/admin');
+    } else {
+        res.status(401).send('Username and/or password are incorrect');
+    }
+});
+
+/**
  * Handle admin tool edit requests
  */
 // todo AUTHENTICATION
 app.get('/admin/:request/:method', function (req, res) {
+
+    // ensure there's a database connection
+    db.getConnection();
+
     let response = {};
     let table = req.params.request,
         method = req.params.method;

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login to admin panel</title>
+    <style>
+        .formtable {
+            display: table;
+        }
+        .formtable > * {
+            display: table-cell;
+        }
+    </style>
+</head>
+<body>
+    <h3>Login to admin panel</h3>
+    <div class="formtable"></div>
+    <form action="/login" method="post">
+        <label for="user">username</label>
+        <input type="text" name="user" id="user" placeholder="Username">
+        <br>
+        <label for="pwd">Password</label>
+        <input type="password" name="pwd" id="pwd" placeholder="Password">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
