@@ -241,8 +241,9 @@ app.get('/admin/:request/:method', function (req, res) {
         default:
             console.error('Invalid admin query ' + req.params.request);
     }
-})
+});
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!')
-})
+var port = process.env.PORT || 8080;
+app.listen(port, function () {
+    console.log('Listening to port ' + port);
+});
