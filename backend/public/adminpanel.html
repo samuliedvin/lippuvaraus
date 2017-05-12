@@ -226,6 +226,7 @@
             switch(_curPage) {
                 case 'movies':
                     values.name = window.prompt('Elokuvan nimi');
+                    values.imageurl = window.prompt('Kuvan URL');
                     doRequest(_curPage, (res) => {
                         window.alert('Movie added to database');
                         reload();
@@ -304,7 +305,6 @@
             function setOff() {
                 for(let i in linkkireferenssit) {
                     if(linkkireferenssit.hasOwnProperty(i)) {
-                        console.log(i + " " + linkkireferenssit['movies']);
                         linkkireferenssit[i].classList.remove('active');
                     }
                 }
@@ -318,7 +318,6 @@
                 getRef('kayttajat', 'users');
                 getRef('naytokset', 'screenings');
                 getRef('teatterit', 'theaters');
-                console.log(linkkireferenssit.length + " " + linkkireferenssit['movies'].style.classList);
             }
             // set all else off
             setOff();
@@ -345,7 +344,8 @@
                         data.forEach((movie) => {
                             dataContainer.appendChild(createEditElement(movie.idMovie,
                                 [
-                                    {name: 'title', value: movie.title}
+                                    {name: 'title', value: movie.title},
+                                    {name: 'imageurl', value: movie.imageurl}
                                 ]));
                         });
                     });

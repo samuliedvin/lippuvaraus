@@ -145,8 +145,7 @@ var admin_deleteTheater = function (idTheater, cb) {
  * @param cb
  */
 var admin_addMovie = function (title, pic_url, cb) {
-    // todo add pic
-    commitQuery("INSERT INTO Movie(title) VALUES(?);",
+    commitQuery("INSERT INTO Movie(title, pic) VALUES(?, ?);",
     [title], cb);
 };
 
@@ -207,7 +206,7 @@ var getScreeningsByTheaterMovie = function (idMovie, idTheater, cb) {
  * @param cb
  */
 var getMovieScreenings = function (idMovie, cb) {
-    commitQuery("SELECT * FROM Screenings WHERE idMovie = ?;", [idMovie], cb);
+    commitQuery("SELECT * FROM Screening WHERE idMovie = ?;", [idMovie], cb);
 }
 
 /**
@@ -570,7 +569,6 @@ module.exports = {
     // screenings
     getScreenings,
     getScreeningsByDate,
-    getAllScreenings,
     getMovieScreenings,
     getScreeningsByTheaterMovie,
 

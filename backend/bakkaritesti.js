@@ -17,6 +17,8 @@ app.use('/images', express.static('backend/images'));
 app.use(session({ secret: 'turunyliopisto', cookie: { maxAge: 30 * 1000 * 60 }}));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.set('view engine', 'ejs'); // set up ejs for templating
+app.use(express.static('public'));
 
 /**
  * Allow CORS requests from other hosts
@@ -28,11 +30,19 @@ app.use(function(req, res, next) {
 });
 
 /**
+ * Ensure there's always a connection to database when someone is using the system
+ */
+app.use(function (req, res, next) {
+    db.getConnection();
+    next();
+});
+
+/**
  * Check authentication if trying to access secure page
  */
 app.use(function(req, res, next) {
     console.log('checkAuth ' + req.url);
-    if (/.*\/admin.*/.test(req.url) && (!req.session || !req.session.authenticated)) {
+    if (/.*\/admin.*/.test(req.url) && (!req.session || !req.session.adminauthenticated)) {
         res.status(403).send('YOU SHALL NOT PASS');
         return;
     }
@@ -49,22 +59,185 @@ app.get('/admin', function (req, res) {
 /**
  * Serve login page
  */
-app.get('/login', function (req, res) {
+app.get('/login2', function (req, res) {
     res.sendfile('backend/public/login.html');
 });
 
+/**
+ * Log out, works for both admin and regular user
+ */
 app.get('/logout', function (req, res) {
-    req.session.destroy();
-    res.redirect('/login');
+    req.session.destroy(); // wipe out session info
+    res.redirect('/'); // back to root
 });
 
 /**
- * Handle login request
+ * Regular user log in
  */
-app.post('/login', function(req, res) {
-    console.log(req.body);
+app.post('/login', function (req, res) {
+    if(req.body.user && req.body.pwd) {
+        // authenticate user with inputted credentials
+        db.authenticateUser(req.body.user, req.body.pwd, function (err, result) {
+            if(err) {
+                res.json({status: 'failed'});
+            } else {
+                if(result.length === 1) {
+                    let username = result[0].name;
+                    // correct username and password
+                    res.json({status: 'success', user: username});
+                    // set session variable
+                    res.session.authenticated = {name: username, id: result[0].idUser};
+                } else {
+                    // invalid credentials etc.
+                    res.json({status: 'invalid'});
+                }
+            }
+        });
+    } else {
+        res.json({status: {status: 'failed'}});
+    }
+});
+
+/**
+ * Check regular user authentication
+ */
+function checkAuth(req) {
+    return (req.session.authentication !== null || req.session.authentication !== undefined);
+}
+
+/**
+ * Return all movies in database
+ */
+app.get('/getmovies', function (req, res) {
+    db.getMovies((err, result) => {
+        res.json(result);
+    });
+});
+
+/**
+ * Get all screenings
+ */
+app.get('/getscreenings', function(req, res) {
+    db.getScreenings((err, result) => {
+        res.json(result);
+    });
+});
+
+/**
+ * Get screenings by date range
+ */
+app.get('/getscreenings/:datestart/:dateend', function(req, res) {
+    db.getScreeningsByDate(req.params.datestart, req.params.dateend, (err, result) => {
+        res.json(result);
+    });
+});
+
+/**
+ * Get screenings by movie id
+ */
+app.get('/getmoviescreenings/id/:movieid', function(req, res) {
+    db.getMovieScreenings(req.params.movieid, (err, result) => {
+        res.json(result);
+    });
+});
+
+/**
+ * Get screenings by movie id and theater id
+ */
+app.get('/getmoviescreenings/:movieid/:theaterid', function(req, res) {
+    db.getScreeningsByTheaterMovie(req.params.movieid, req.params.theaterid, (err, result) => {
+        res.json(result);
+    });
+});
+
+/**
+ * Get reserved seats
+ */
+app.get('/reservedseats/:screeningid', function(req, res) {
+    db.getReservedSeats(req.params.screeningid, (err, result) => {
+        res.json(result);
+    });
+});
+
+/**
+ * Get auditorium's seats
+ */
+app.get('/seats/:auditoriumid', function(req, res) {
+    db.getAuditoriumSeats(req.params.auditoriumid, (err, result) => {
+        res.json(result);
+    });
+});
+
+/**
+ * Get user's bookings
+ */
+app.get('/booking', function(req, res) {
+    if(checkAuth()) {
+        db.getUserBookings(req.session.authenticated.id, (err, result) => {
+            res.json(result);
+        });
+    } else {
+        res.status(401).send('Unauthorized');
+    }
+});
+
+/**
+ * Delete booking
+ */
+app.get('/booking/delete/:id', function(req, res) {
+    if(checkAuth()) {
+        db.deleteBooking(req.session.authenticated.id, req.params.id ,(err, result) => {
+            res.json({status: resulta.affectedRows === 1});
+        });
+    } else {
+        res.status(401).send('Unauthorized');
+    }
+});
+
+/**
+ * Handle a booking request
+ */
+app.post('/makebooking/:screening/:seat', function(req, res) {
+    if(checkAuth()) {
+        db.createBooking(req.session.authenticated.id, req.params.screening, req.params.seat, (err, result) => {
+            if(err) {
+                res.json({status: 'failed'});
+            } else {
+                if(result.affectedRows !== 1) {
+                    res.json({status: 'success'});
+                } else {
+                    res.json({status: 'failed'});
+                }
+            }
+        });
+    } else {
+        res.status(401).send('Unauthorized');
+    }
+});
+
+/**
+ * Register user
+ */
+app.post('/register', function(req, res) {
+    db.createUser(req.body.name, req.body.email, req.body.pwd, (err, result) => {
+        if(err || result.affectedRows !== 1) {
+            result.json({status: 'fail'});
+        } else {
+            result.json({status: 'OK'});
+        }
+    });
+});
+
+/**
+ * ADMIN METHODS BELOW
+ */
+
+/**
+ * Handle admin login request
+ */
+app.post('/login2', function(req, res) {
     if (req.body.user && req.body.user === 'admin' && req.body.pwd && req.body.pwd === 'admin') {
-        req.session.authenticated = true;
+        req.session.adminauthenticated = true;
         res.redirect('/admin');
     } else {
         res.status(401).send('Username and/or password are incorrect');
@@ -74,12 +247,7 @@ app.post('/login', function(req, res) {
 /**
  * Handle admin tool edit requests
  */
-// todo AUTHENTICATION
 app.get('/admin/:request/:method', function (req, res) {
-
-    // ensure there's a database connection
-    db.getConnection();
-
     let response = {};
     let table = req.params.request,
         method = req.params.method;
@@ -243,6 +411,7 @@ app.get('/admin/:request/:method', function (req, res) {
     }
 });
 
+// get port from heroku or use default
 var port = process.env.PORT || 8080;
 app.listen(port, function () {
     console.log('Listening to port ' + port);
