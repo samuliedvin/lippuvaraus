@@ -453,7 +453,7 @@
                     callback(JSON.parse(this.responseText));
                 }
             };
-            xhttp.open("GET", 'https://localhost:3000/admin/' + url + '/' + method + query, true);
+            xhttp.open("GET", 'admin/' + url + '/' + method + query, true);
             xhttp.send();
         }
     </script>
