@@ -1,4 +1,4 @@
-<div id="reservation-modal" class="modal fade" role="dialog">
+<div id="reservation-modal" class="modal fade reservation-modal" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -7,10 +7,37 @@
         <h4 class="modal-title">Tee varaus</h4>
       </div>
       <div class="modal-body">
+          <div class="seatMapContainer">
 
+          <%
+          // Test rows
+            var rows = 10;
+            var seatsInRow = 15;
+          %>
+
+          <% for (i=0; i < rows; i++) { %>
+
+              <div class="seatMapRow">
+                  <p>
+                    Rivi <%= i %>
+                  </p>
+                  <% for(j=0; j<seatsInRow; j++) { %>
+
+                    <label class="seatMapSelector">
+                        <input type="checkbox" autocomplete="off">
+                        <div class="seatMapSeat">
+                            <%= j %>
+                        </div>
+                    </label>
+                  <% } %>
+              </div>
+
+          <% } %>
 
       </div>
+      </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#seatmap-modal">Valitse paikka</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
       </div>
     </div>

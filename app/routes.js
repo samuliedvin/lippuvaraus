@@ -2,6 +2,7 @@
 var fs  = require('fs');
 
 
+
 module.exports = function(app, passport) {
 
     // =====================================
@@ -109,6 +110,15 @@ module.exports = function(app, passport) {
        res.redirect('/');
     });
 
+
+    // MOVIE search
+
+    app.post('/search', function(req, res) {
+        console.log('Tämmöinen ajax-req tuli: ' + JSON.stringify(req.body));
+        return res.send({
+            message : "Tätä halusit: " + req.body.theater + ', ' + req.body.date
+        });
+    });
 
 };
 

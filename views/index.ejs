@@ -12,52 +12,56 @@
 <p class="lead">Tervetuloa elokuvateattereihimme.</p>
 </div>
 
-<div class="dropdown-menubar">
-    <% Date.prototype.addDays = function (d) {
-        if (d) {
-            var t = this.getTime();
-            t = t + (d * 86400000);
-            this.setTime(t);
-        }
-    };
+<!-- Form search, TODO: ajax call to get movies from database-->
 
-    var date = new Date();
-    var dd = date.getDate();
-    var mm = date.getMonth()+1; //January is 0!
-    %>
+<form id="searchForm">
+    <div class="dropdown-menubar">
+        <% Date.prototype.addDays = function (d) {
+            if (d) {
+                var t = this.getTime();
+                t = t + (d * 86400000);
+                this.setTime(t);
+            }
+        };
+        var date = new Date();
+        %>
 
+        <select id="theater" name="theater" class="selectpicker" title="Valitse teatteri">
+            <% for(i=0; i<theaters.length; i++) { %>
+                <option>
+                    <%= theaters[i].name; %>
+                </option>
+            <% } %>
+        </select>
+        <select id="date" name="date" class="selectpicker" title="Valitse päivä">
+            <% for(i=0; i<14; i++) { %>
+                <option>
 
-    <select class="selectpicker" title="Valitse teatteri">
-        <% for(i=0; i<theaters.length; i++) { %>
-            <option>
-                <%= theaters[i].name; %>
-            </option>
-        <% } %>
-    </select>
-    <select class="selectpicker" title="Valitse päivä">
-        <% for(i=0; i<14; i++) { %>
-            <option>
-                <%= (dd+i) + '.' + mm %>
-            </option>
-        <% } %>
-    </select>
-    <select class="selectpicker" title="Valitse alkamisajankohta">
-        <% for(i=14; i<23; i++) { %>
-            <option>
-                <%= i %>:00 %>
-            </option>
-        <% } %>
-    </select>
-</div>
-
-<%
+                    <%= date.getDate() + '.' + (date.getMonth()+1) + '.' %>
+                    <% date.addDays(1) %>
+                </option>
+            <% } %>
+        </select>
+        <select id="time" name="time" class="selectpicker" title="Valitse alkamisajankohta">
+            <% for(i=14; i<23; i++) { %>
+                <option>
+                    <%= i %>:00 %>
+                </option>
+            <% } %>
+        </select>
 
 
-for (i=0; i<20; i++) { %>
-    <div class="col-md-12">
+        <button id="submit" class="btn btn-lg">Etsi</button>
+    </div>
+</form>
+
+
+<div id="searchresult" class="col-md-12">
+
+<% for (i=0; i<20; i++) { %>
         <div class="movie-card">
 
-            <img class="movie-img" style="background: url('<%= movies[i].imgsrc %>') center; background-size: cover;" />
+            <div class="movie-img" style="display: inline-block; background: url('<%= movies[i].imgsrc %>') center; background-size: cover;"></div>
             <span class="movie-info">
                 <h3>
                     <%= movies[i].tit %>
@@ -75,7 +79,10 @@ for (i=0; i<20; i++) { %>
             </span>
             <button id="<%= movies[i].tit %>" class="btn btn-warning btn-lg" style="vertical-align: bottom;" data-toggle="modal" data-target="#reservation-modal">Varaa</button>
         </div>
-    </div>
 <% } %>
+
+
+</div>
+
 
 <% include ./partials/footer %>
