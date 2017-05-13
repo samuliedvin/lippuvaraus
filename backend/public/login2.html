@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testisivu</title>
+    <style>
+        .formtable {
+            display: table;
+        }
+        .formtable > * {
+            display: table-cell;
+        }
+        .leffa {
+            width: 100%;
+            min-height: 5em;
+            margin: 1em auto 1em auto;
+        }
+        .leffa img {
+            float: left;
+            width: 10%;
+
+        }
+        .leffa .naytokset {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <h3>LOGIN</h3>
+    <div class="formtable"></div>
+    <form name="login" action="/login" method="post">
+        <label for="user">Username</label>
+        <input type="text" name="user" id="user" placeholder="Username">
+        <br>
+        <label for="pwd">Password</label>
+        <input type="password" name="pwd" id="pwd" placeholder="Password">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <h3>REGISTER</h3>
+    <div class="formtable"></div>
+    <form name="register" action="/register" method="post" onsubmit="return validateReg()">
+        <label for="user">Username</label>
+        <input type="text" name="user" id="user2" placeholder="Username"><br>
+        <label for="pwd">E-mail</label>
+        <input type="text" name="email" id="email" placeholder="Email"><br>
+        <label for="pwd">Password</label>
+        <input type="password" name="pwd" id="pwd" placeholder="Password"><br>
+        <input type="password" name="pwd2" id="pwd2" placeholder="Password again"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <button onclick="doAjax('getmovies')">Hae kaikki elokuvat</button>
+    <br>
+    <button onclick="doAjax('getscreenings')">Hae kaikki näytökset</button>
+    <br>
+    <br>
+    <input type="date" id="alkupaiva" value="Alkupäivä">
+    <input type="date" id="loppupaiva" value="Loppupäivä">
+    <button onclick="getScreenings()">Hae näytökset aikaväliltä</button>
+    <br><br>
+    <input type="number" id="idMovie" placeholder="Elokuvan ID">
+    <button onclick="haeLeffat()">Hae elokuvan näytökset</button>
+    <p id="tulokset"></p>
+
+    <!-- Äitielementti leffoille -->
+    <div class="leffa" id="masterleffa" style="display: none">
+        <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTg2MzI1MTg3OF5BMl5BanBnXkFtZTgwNTU3NDA2MTI@._V1_UX182_CR0,0,182,268_AL_.jpg">
+        <h3>Leffan otsikko</h3>
+        <p>Leffan kuvaus</p>
+        <div class="naytokset">
+            <a href="">2017-05-15</a>
+            <a href="">2017-05-16</a>
+            <a href="">2017-05-17</a>
+        </div>
+    </div>
+
+    <script>
+        const targetp = document.getElementById('tulokset');
+        function getScreenings(){
+            doAjax('getscreenings/'+document.getElementById('alkupaiva').value+'/'+document.getElementById('loppupaiva').value);
+        };
+        function validateReg() {
+            console.log('validating');
+            let result = document.forms['register']['pwd'].value === document.forms['register']['pwd2'].value;;
+            if(result) window.alert('Registering');
+            return result;
+        }
+        function createMovieElement(id, name, url, screenings) {
+            let element = document.getElementById('masterleffa').cloneNode(true);
+            element.id = '';
+            element.getElementsByTagName('img')[0].src = url;
+            element.getElementsByTagName('h3')[0].textContent = name;
+            let screeningsdiv = element.getElementsByTagName('div')[0];
+            screeningsdiv.innerHTML = '';
+            screenings.forEach((screening) => {
+                console.log(screening);
+                let link = document.createElement('a');
+                link.textContent = '' + screening.time;
+                screeningsdiv.appendChild(link);
+            });
+            element.style.display = 'block';
+            document.body.appendChild(element);
+        };
+        function haeLeffat() {
+            let id = document.getElementById('idMovie').value;
+            let movieId, movieName, movieUrl;
+            doAjax('getmovies', function(result) {
+                result.forEach((movie) => {
+                    if(movie.idMovie === +id) {
+                        movieId = id;
+                        movieName = movie.name;
+                        movieUrl = movie.imageurl;
+                        doAjax('getmoviescreenings/id/'+id, function (result) {
+                            // create movie element
+                            createMovieElement(movieId, movieName, movieUrl, result);
+                        });
+                    }
+                });
+            });
+        }
+        function doAjax(url, cb) {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if(this.readyState === 4) {
+                    targetp.textContent = this.responseText;
+                    if(cb)
+                        cb(JSON.parse(this.responseText));
+                }
+            };
+
+            xhttp.open('GET', 'http://localhost:8080/'+url, true);
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>

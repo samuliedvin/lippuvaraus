@@ -81,12 +81,13 @@ app.post('/login', function (req, res) {
             if(err) {
                 res.json({status: 'failed'});
             } else {
-                if(result.length === 1) {
-                    let username = result[0].name;
+                if(result) {
+                    let username = res.name;
                     // correct username and password
                     res.json({status: 'success', user: username});
                     // set session variable
-                    res.session.authenticated = {name: username, id: result[0].idUser};
+                    req.session.authenticated = {name: username, id: res.idUser};
+                    console.log('User logged:  ' + req.body.user);
                 } else {
                     // invalid credentials etc.
                     res.json({status: 'invalid'});
@@ -123,13 +124,17 @@ app.get('/getscreenings', function(req, res) {
     });
 });
 
+app.get('/testi', function(req, res) {
+    res.sendfile('backend/public/login2.html');
+});
+
 /**
  * Get screenings by date range
  */
 app.get('/getscreenings/:datestart/:dateend', function(req, res) {
     db.getScreeningsByDate(req.params.datestart, req.params.dateend, (err, result) => {
         res.json(result);
-    });
+    });ge
 });
 
 /**
@@ -219,11 +224,15 @@ app.post('/makebooking/:screening/:seat', function(req, res) {
  * Register user
  */
 app.post('/register', function(req, res) {
-    db.createUser(req.body.name, req.body.email, req.body.pwd, (err, result) => {
+    console.log(req.body);
+    db.createUser(req.body.user, req.body.email, req.body.pwd, (err, result) => {
+        console.log(err + " " + result);
         if(err || result.affectedRows !== 1) {
-            result.json({status: 'fail'});
+            console.error('User creation failed');
+            res.json({status: 'fail'});
         } else {
-            result.json({status: 'OK'});
+            console.log('User ' + req.body.user + ' created');
+            res.json({status: 'OK'});
         }
     });
 });

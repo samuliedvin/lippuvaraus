@@ -476,8 +476,8 @@ var stringToMySQLDateTime = function (date) {
         console.error("Invalid object given to strign ToMySQLDate");
         return 'error';
     }
-    return str.toISOString().slice(0, 19).replace('T', ' ');
-}
+    return str.toISOString().slice(0, 10);
+};
 
 /**
  * Utility function, to encrypt pwd with SHA256
@@ -513,10 +513,10 @@ var authenticateUser = function(name, passwd, cb) {
             cb(err);
         } else {
             // encrypt password
-            var encpwd = encryptPwd();
+            var encpwd = encryptPwd(passwd);
             if(encpwd === res[0].password) {
                 // authentication successfull
-                cb(null, true);
+                cb(null, {idUser: res[0].idUser, name: res[0].name});
             } else {
                 // wrong password
                 cb(null, false);
@@ -565,6 +565,7 @@ module.exports = {
     userExists,
     getUsers,
     encryptPwd,
+    stringToMySQLDateTime,
 
     // screenings
     getScreenings,
