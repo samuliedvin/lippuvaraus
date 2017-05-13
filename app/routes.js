@@ -69,38 +69,34 @@ module.exports = function(app, passport) {
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
+
+
+
         res.render('profile.ejs', {
             user : req.user // get the user out of session and pass to template
         });
     });
 
-    // =====================================
-    // FACEBOOK ROUTES =====================
-    // =====================================
-    // route for facebook authentication and login
-    app.get('/auth/facebook', passport.authenticate('facebook', { session : false, scope : 'email'}));
+    app.get('/userReservations', function(req, res) {
+        var reservations = [
+            {
+                movie : 'La la land',
+                screeningTime : '14.6.2017 19:00:00',
+                theater : 'Finnkino',
+                auditorium : 'Sali 3'
+            },
+            {
+                movie : 'Captain America',
+                screeningTime : '16.6.2017 19:00:00',
+                theater : 'Julia',
+                auditorium : 'Sali 4'
+            }
+        ]; // some test data
 
-    // handle the callback after facebook has authenticated the user
-    app.get('/auth/facebook/callback',
-       passport.authenticate('facebook', {
-           session : false,
-           successRedirect : '/profile',
-           failureRedirect : '/'
-       }));
-
-    // =====================================
-    // TWITTER ROUTES ======================
-    // =====================================
-    // route for twitter authentication and login
-    app.get('/auth/twitter', passport.authenticate('twitter'));
-
-    // handle the callback after twitter has authenticated the user
-    app.get('/auth/twitter/callback',
-       passport.authenticate('twitter', {
-           successRedirect : '/profile',
-           failureRedirect : '/'
-       }));
-
+        return res.send({
+            reservations : reservations
+        })
+    })
 
     // =====================================
     // LOGOUT ==============================
@@ -114,9 +110,9 @@ module.exports = function(app, passport) {
     // MOVIE search
 
     app.post('/search', function(req, res) {
-        console.log('Tämmöinen ajax-req tuli: ' + JSON.stringify(req.body));
+        var movies = JSON.parse(fs.readFileSync('./app/movies.json', 'utf8'));
         return res.send({
-            message : "Tätä halusit: " + req.body.theater + ', ' + req.body.date
+            movies : movies,
         });
     });
 

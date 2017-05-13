@@ -204,6 +204,9 @@ input:checked + .seatMapSeat {
 }
 
 .movie-img {
+    display: inline-block;
+    background-size: cover;
+    background-position: center;
     vertical-align: middle;
     height: 10em;
     width: 10em;

@@ -51,36 +51,12 @@
         </select>
 
 
-        <button id="submit" class="btn btn-lg">Etsi</button>
+        <button id="submitMovieSearch" class="btn btn-lg">Etsi</button>
     </div>
 </form>
 
 
-<div id="searchresult" class="col-md-12">
-
-<% for (i=0; i<20; i++) { %>
-        <div class="movie-card">
-
-            <div class="movie-img" style="display: inline-block; background: url('<%= movies[i].imgsrc %>') center; background-size: cover;"></div>
-            <span class="movie-info">
-                <h3>
-                    <%= movies[i].tit %>
-                </h3>
-                <p>
-                    Vuosi: <%= movies[i].yr %>
-                </p>
-                <p>
-                    Tuotto: $<%= movies[i].grs %>
-                </p>
-                <p>
-                    Ensiesitys: <%= movies[i].opn %>
-                </p>
-
-            </span>
-            <button id="<%= movies[i].tit %>" class="btn btn-warning btn-lg" style="vertical-align: bottom;" data-toggle="modal" data-target="#reservation-modal">Varaa</button>
-        </div>
-<% } %>
-
+<div id="searchResult" class="col-md-12">
 
 </div>
 

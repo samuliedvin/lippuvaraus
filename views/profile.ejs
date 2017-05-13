@@ -1,23 +1,27 @@
 <% include ./partials/head %>
 <% include ./partials/header %>
 
-    <div class="row">
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-12">
-                <h3><center>
-                        <span class="fa fa-user"></span> Local
-                </center></h3>
 
-                    <p>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
-                    </p>
 
-            </di<center>
+        <div id="userReservations" class="col-sm-12">
 
-            </center>v>
+        </div>
+        <script>
+            var reservations;
+            $.get('/userReservations', function(resp) {
+                reservations = resp.reservations;
+                console.log(reservations);
+                userReservations.showReservations(reservations);
+            });
 
-    </div>
+        </script>
+
+
+            <h3><center>Information dump</center></h3>
+            <p>
+                <strong>id</strong>: <%= user._id %><br>
+                <strong>email</strong>: <%= user.local.email %><br>
+                <strong>password</strong>: <%= user.local.password %>
+            </p>
 
 <% include ./partials/footer %>
