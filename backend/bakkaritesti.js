@@ -8,17 +8,17 @@ const express = require('express')
 const authentication = require('express-authentication');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 const app = express();
 
 // public files
-app.use(express.static('public'));
 app.use('/images', express.static('backend/images'));
 app.use(session({ secret: 'turunyliopisto', cookie: { maxAge: 30 * 1000 * 60 }}));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.set('view engine', 'ejs'); // set up ejs for templating
-app.use(express.static('public'));
+app.use(express.static('backend/public'));
 
 /**
  * Allow CORS requests from other hosts
@@ -112,6 +112,49 @@ function checkAuth(req) {
 app.get('/getmovies', function (req, res) {
     db.getMovies((err, result) => {
         res.json(result);
+    });
+});
+
+/**
+ * Root view
+ */
+app.get('/', function (req, res) {
+    db.getMovies(function(err, moviesRes) {
+        db.getTheaters(function (err, theatersRes) {
+            if(req.session.authenticated && req.session.authenticated.name !== undefined) {
+                res.render('index.ejs', {
+                    movies: moviesRes,
+                    theaters: theatersRes,
+                    user: req.session.authenticated.name
+                });
+            } else {
+                res.render('index.ejs', {
+                    movies: moviesRes,
+                    theaters: theatersRes,
+                    user: undefined
+                });
+            }
+        });
+    });
+});
+
+app.get('/login', function(req, res) {
+    // render the page and pass in any flash data if it exists
+    res.render('login.ejs', { message: req.flash('loginMessage') });
+});
+
+app.get('/signup', function(req, res) {
+    // render the page and pass in any flash data if it exists
+    res.render('signup.ejs', { message: req.flash('signupMessage') });
+});
+
+app.get('/profile', function(req, res) {
+    if(!checkAuth()) {
+        res.redirect('/');
+        return;
+    }
+    res.render('profile.ejs', {
+        user : req.user // get the user out of session and pass to template
     });
 });
 

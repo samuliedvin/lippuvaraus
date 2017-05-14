@@ -1,0 +1,43 @@
+<div id="signup-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Rekisteröidy uudeksi käyttäjäksi helposti tästä</h4>
+      </div>
+      <div class="modal-body">
+          <!-- LOGIN FORM -->
+          <form action="/signup" method="post">
+              <div class="form-group">
+                  <label>Sähköposti</label>
+                  <input type="text" class="form-control" name="email">
+              </div>
+              <div class="form-group">
+                  <label>Salasana</label>
+                  <input type="password" class="form-control" name="password">
+              </div>
+
+              <button type="submit" class="btn btn-warning btn-lg">Rekisteröidy</button>
+              <div style="display: inline-block; float: right;">
+
+                  <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+                  <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>
+
+              </div>
+          </form>
+
+          <hr />
+
+          <p>
+              Oletko jo käyttäjä? <button type="button" class="btn btn-lg btn-default" data-dismiss="modal" data-toggle="modal" data-target="#login-modal">Kirjaudu sisään.</button>
+          </p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
+      </div>
+    </div>
+
+  </div>
+</div>

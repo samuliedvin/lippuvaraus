@@ -1,0 +1,81 @@
+<% include ./partials/head %>
+<% include ./modals/login-modal %>
+<% include ./modals/signup-modal %>
+<% include ./modals/reservation-modal %>
+<% include ./partials/header %>
+
+
+
+
+<div id="startchange" class="inner cover">
+<h1 class="cover-heading">Bio Kex</h1>
+<p class="lead">Tervetuloa elokuvateattereihimme.</p>
+</div>
+
+<div class="dropdown-menubar">
+    <% Date.prototype.addDays = function (d) {
+        if (d) {
+            var t = this.getTime();
+            t = t + (d * 86400000);
+            this.setTime(t);
+        }
+    };
+
+    var date = new Date();
+    var dd = date.getDate();
+    var mm = date.getMonth()+1; //January is 0!
+    %>
+
+
+    <select class="selectpicker" title="Valitse teatteri">
+        <% for(i=0; i<theaters.length; i++) { %>
+            <option>
+                <%= theaters[i].name; %>
+            </option>
+        <% } %>
+    </select>
+    <select class="selectpicker" title="Valitse päivä">
+        <% for(i=0; i<14; i++) { %>
+            <option>
+                <%= (dd+i) + '.' + mm %>
+            </option>
+        <% } %>
+    </select>
+    <select class="selectpicker" title="Valitse alkamisajankohta">
+        <% for(i=14; i<23; i++) { %>
+            <option>
+                <%= i %>:00 %>
+            </option>
+        <% } %>
+    </select>
+</div>
+
+<%
+
+
+for (i=0; i<20; i++) { %>
+    <div class="col-md-12">
+        <div class="movie-card">
+
+            <img class="movie-img" style="background: url('<%= movies[i].imageurl %>') center; background-size: cover;" />
+            <span class="movie-info">
+                <h3>
+                    <%= movies[i].title %>
+                </h3>
+                <!--<p>-->
+                    <!--Vuosi: <%= movies[i].yr %>-->
+                <!--</p>-->
+                <!--<p>-->
+                    <!--Tuotto: $<%= movies[i].grs %>-->
+                <!--</p>-->
+                <!--<p>-->
+                    <!--Ensiesitys: <%= movies[i].opn %>-->
+                <!--</p>-->
+
+            </span>
+            <button id="<%= movies[i].title %>" class="btn btn-warning btn-lg" style="vertical-align: bottom;" data-toggle="modal" data-target="#reservation-modal">Varaa</button>
+        </div>
+    </div>
+<% } %>
+
+<% include ./partials/footer %>
