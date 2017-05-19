@@ -10,10 +10,8 @@
             var reservations;
             $.get('/userReservations', function(resp) {
                 reservations = resp.reservations;
-                console.log(reservations);
                 userReservations.showReservations(reservations);
             });
-
         </script>
 
 
