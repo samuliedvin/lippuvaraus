@@ -4,13 +4,14 @@
 <% include ./modals/reservation-modal %>
 <% include ./partials/header %>
 
-
-
-
 <div id="startchange" class="inner cover">
 <h1 class="cover-heading">Bio Kex</h1>
 <p class="lead">Tervetuloa elokuvateattereihimme.</p>
 </div>
+
+<% if(user) {%>
+<p><% user %></p>
+<% } %>
 
 <div class="dropdown-menubar">
     <% Date.prototype.addDays = function (d) {
@@ -41,19 +42,9 @@
             </option>
         <% } %>
     </select>
-    <select class="selectpicker" title="Valitse alkamisajankohta">
-        <% for(i=14; i<23; i++) { %>
-            <option>
-                <%= i %>:00 %>
-            </option>
-        <% } %>
-    </select>
 </div>
 
-<%
-
-
-for (i=0; i<20; i++) { %>
+<%for (i=0; i < movies.length ; i++) { %>
     <div class="col-md-12">
         <div class="movie-card">
 
@@ -79,3 +70,24 @@ for (i=0; i<20; i++) { %>
 <% } %>
 
 <% include ./partials/footer %>
+
+<script>
+    /**
+     * Send POST request
+     * @param url
+     * @param params
+     * @param cb
+     */
+    function doAjaxPOST(url, params, cb) {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if(this.readyState === 4) {
+                if(cb)
+                    cb(JSON.parse(this.responseText));
+            }
+        };
+        xhttp.open('POST', url, true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send(params);
+    }
+</script>

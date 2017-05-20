@@ -506,7 +506,7 @@ function readLine(cb) {
  * @param cb Callback, result is true if authentication was successful, false if given password was wrong
  */
 var authenticateUser = function(name, passwd, cb) {
-    let query = "SELECT password FROM User WHERE name = ?;";
+    let query = "SELECT * FROM User WHERE name = ?;";
     commitQuery(query, [name], function (err, res) {
         if(err) {
             console.error("Login failed: " + err);
@@ -514,6 +514,7 @@ var authenticateUser = function(name, passwd, cb) {
         } else {
             // encrypt password
             var encpwd = encryptPwd(passwd);
+            console.log(encpwd + " " + res[0].password);
             if(encpwd === res[0].password) {
                 // authentication successfull
                 cb(null, {idUser: res[0].idUser, name: res[0].name});

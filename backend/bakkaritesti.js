@@ -13,12 +13,12 @@ const flash = require('connect-flash');
 const app = express();
 
 // public files
-app.use('/images', express.static('backend/images'));
+app.use('/images', express.static('images'));
 app.use(session({ secret: 'turunyliopisto', cookie: { maxAge: 30 * 1000 * 60 }}));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.set('view engine', 'ejs'); // set up ejs for templating
-app.use(express.static('backend/public'));
+app.use(express.static('public'));
 
 /**
  * Allow CORS requests from other hosts
@@ -72,34 +72,6 @@ app.get('/logout', function (req, res) {
 });
 
 /**
- * Regular user log in
- */
-app.post('/login', function (req, res) {
-    if(req.body.user && req.body.pwd) {
-        // authenticate user with inputted credentials
-        db.authenticateUser(req.body.user, req.body.pwd, function (err, result) {
-            if(err) {
-                res.json({status: 'failed'});
-            } else {
-                if(result) {
-                    let username = res.name;
-                    // correct username and password
-                    res.json({status: 'success', user: username});
-                    // set session variable
-                    req.session.authenticated = {name: username, id: res.idUser};
-                    console.log('User logged:  ' + req.body.user);
-                } else {
-                    // invalid credentials etc.
-                    res.json({status: 'invalid'});
-                }
-            }
-        });
-    } else {
-        res.json({status: {status: 'failed'}});
-    }
-});
-
-/**
  * Check regular user authentication
  */
 function checkAuth(req) {
@@ -125,9 +97,10 @@ app.get('/', function (req, res) {
                 res.render('index.ejs', {
                     movies: moviesRes,
                     theaters: theatersRes,
-                    user: req.session.authenticated.name
+                    user: req.session.authenticated
                 });
             } else {
+                console.log(theatersRes);
                 res.render('index.ejs', {
                     movies: moviesRes,
                     theaters: theatersRes,
@@ -267,14 +240,30 @@ app.post('/makebooking/:screening/:seat', function(req, res) {
  * Register user
  */
 app.post('/register', function(req, res) {
-    console.log(req.body);
-    db.createUser(req.body.user, req.body.email, req.body.pwd, (err, result) => {
+    db.createUser(req.body.name, req.body.email, req.body.pwd, (err, result) => {
         console.log(err + " " + result);
         if(err || result.affectedRows !== 1) {
             console.error('User creation failed');
             res.json({status: 'fail'});
         } else {
-            console.log('User ' + req.body.user + ' created');
+            console.log('User ' + req.body.name + ' created');
+            res.json({status: 'OK'});
+        }
+    });
+});
+
+/**
+ * Log in user
+ */
+app.post('/login', function(req, res) {
+    db.authenticateUser(req.body.name, req.body.pwd, function (err, result) {
+        if(err) {
+            console.error('Login failed');
+            res.json({status: 'fail'});
+        } else {
+            // update session
+            req.session.authenticated = {name: result.name, id: result.idUser};
+            console.log('User ' + result.name + ' logged in');
             res.json({status: 'OK'});
         }
     });
