@@ -148,26 +148,59 @@ body {
 */
 
 .movie-card {
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
     background: rgba(255,255,255, 0.5);
     border-radius: 0.5em;
     padding: 1em;
     margin: 1em;
     text-align: left;
+    height: 15em;
 }
 
 .movie-img {
-    vertical-align: middle;
+    flex: 2;
     height: 10em;
-    width: 10em;
+    width: 5em;
     padding: 0.2em;
     overflow: hidden;
+    border-radius: 5px;
+}
+
+.movietitle {
+    float: left;
+}
+
+
+.movieDisplay {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
 }
 
 .movie-info {
     height: 100%;
-    display: inline-block;
-    vertical-align: middle;
-    width: 70%;
+    flex: 2;
+}
+
+.screenings {
+    flex: 3;
+    height: 100%;
+    overflow: auto;
+}
+.screenings a {
+    display: block;
+    margin: 0px;
+    width: 100%;
+    transition: all 0.5s;
+}
+
+.screenings a:hover {
+    text-indent: 3px;
+    color: #00b3ee;
 }
 
 /*

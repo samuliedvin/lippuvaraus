@@ -91,22 +91,48 @@ app.get('/getmovies', function (req, res) {
  * Root view
  */
 app.get('/', function (req, res) {
+    function getTheaterName(theaters, theaterId) {
+        let resultStr = 'Unknown';
+        theaters.forEach((theater) => {
+            if(theater.idTheater === theaterId)
+                resultStr = theater.name;
+        });
+        return resultStr;
+    }
     db.getMovies(function(err, moviesRes) {
         db.getTheaters(function (err, theatersRes) {
-            if(req.session.authenticated && req.session.authenticated.name !== undefined) {
-                res.render('index.ejs', {
-                    movies: moviesRes,
-                    theaters: theatersRes,
-                    user: req.session.authenticated
+            db.getScreenings(function (err, screeningsRes) {
+                db.getAuditoriums(function(err, auditoriumRes) {
+                    // give each viewmodel entry the name of the theater
+                    screeningsRes.forEach((screening) =>
+                    {
+                        let idTheater;
+                        auditoriumRes.forEach((a) => {
+                            if(a.idAuditorium === screening.idAuditorium)
+                                idTheater = a.idTheater;
+                        });
+                        screening.theaterName = getTheaterName(theatersRes, idTheater);
+                        screening.idTheater = idTheater;
+                    });
+
+                    if(req.session.authenticated && req.session.authenticated.name !== undefined) {
+                        res.render('index.ejs', {
+                            movies: moviesRes,
+                            theaters: theatersRes,
+                            user: req.session.authenticated,
+                            screenings: screeningsRes
+                        });
+                    } else {
+                        console.log(theatersRes);
+                        res.render('index.ejs', {
+                            movies: moviesRes,
+                            theaters: theatersRes,
+                            user: undefined,
+                            screenings: screeningsRes
+                        });
+                    }
                 });
-            } else {
-                console.log(theatersRes);
-                res.render('index.ejs', {
-                    movies: moviesRes,
-                    theaters: theatersRes,
-                    user: undefined
-                });
-            }
+            });
         });
     });
 });
