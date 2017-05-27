@@ -13,7 +13,10 @@
 
                 <% if (user != null) { %>
                     <li>
-                        <a href="/profile">Hei <%= user.name  %></a>
+                        <a href="/profile">Omat varaukset</a>
+                    </li>
+                    <li id="usermessage">
+                        <p>Kirjautunut: <%=user.name%></p>
                     </li>
                     <li>
                         <a href="/logout">Kirjaudu ulos</a>
