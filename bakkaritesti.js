@@ -41,7 +41,6 @@ app.use(function (req, res, next) {
  * Check authentication if trying to access secure page
  */
 app.use(function(req, res, next) {
-    console.log('checkAuth ' + req.url);
     if (/.*\/admin.*/.test(req.url) && (!req.session || !req.session.adminauthenticated)) {
         res.status(403).send('YOU SHALL NOT PASS');
         return;
@@ -53,14 +52,14 @@ app.use(function(req, res, next) {
  * Serve admin panel
  */
 app.get('/admin', function (req, res) {
-    res.sendfile('backend/public/adminpanel.html');
+    res.sendfile('public/adminpanel.html');
 });
 
 /**
  * Serve login page
  */
 app.get('/login2', function (req, res) {
-    res.sendfile('backend/public/login.html');
+    res.sendfile('public/login.html');
 });
 
 /**
@@ -75,7 +74,9 @@ app.get('/logout', function (req, res) {
  * Check regular user authentication
  */
 function checkAuth(req) {
-    return (req.session.authentication !== null || req.session.authentication !== undefined);
+    if(!req.session)
+        return false;
+    return (req.session.authenticated !== null && req.session.authenticated !== undefined);
 }
 
 /**
@@ -111,24 +112,45 @@ app.get('/', function (req, res) {
                             if(a.idAuditorium === screening.idAuditorium)
                                 idTheater = a.idTheater;
                         });
+                        moviesRes.forEach((a) => {
+                            if(a.idMovie === screening.idMovie)
+                                screening.idMovie = a.idMovie;
+                                screening.moviename = a.title;
+                        });
+                        screening.time = screening.time.toISOString().slice(0,10);
                         screening.theaterName = getTheaterName(theatersRes, idTheater);
                         screening.idTheater = idTheater;
                     });
 
                     if(req.session.authenticated && req.session.authenticated.name !== undefined) {
-                        res.render('index.ejs', {
-                            movies: moviesRes,
-                            theaters: theatersRes,
-                            user: req.session.authenticated,
-                            screenings: screeningsRes
+
+                        // get user bookings
+                        db.getUserBookings(req.session.authenticated.id, function (err, bookingRes) {
+                            bookingRes.forEach((b) => {
+                                screeningsRes.forEach((a) => {
+                                    if(a.idScreening === b.idScreening) {
+                                        b.movieName = a.moviename;
+                                        b.time = a.time;
+                                        b.theaterName = a.theaterName;
+                                    }
+                                });
+                            });
+                            console.log(bookingRes + " " + bookingRes.length);
+                            res.render('index.ejs', {
+                                movies: moviesRes,
+                                theaters: theatersRes,
+                                user: req.session.authenticated,
+                                screenings: screeningsRes,
+                                bookings: bookingRes
+                            });
                         });
                     } else {
-                        console.log(theatersRes);
                         res.render('index.ejs', {
                             movies: moviesRes,
                             theaters: theatersRes,
                             user: undefined,
-                            screenings: screeningsRes
+                            screenings: screeningsRes,
+                            bookings: []
                         });
                     }
                 });
@@ -137,25 +159,7 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/login', function(req, res) {
-    // render the page and pass in any flash data if it exists
-    res.render('login.ejs', { message: req.flash('loginMessage') });
-});
-
-app.get('/signup', function(req, res) {
-    // render the page and pass in any flash data if it exists
-    res.render('signup.ejs', { message: req.flash('signupMessage') });
-});
-
-app.get('/profile', function(req, res) {
-    if(!checkAuth()) {
-        res.redirect('/');
-        return;
-    }
-    res.render('profile.ejs', {
-        user : req.user // get the user out of session and pass to template
-    });
-});
+/* DATABASE HANDLING STARTS HERE */
 
 /**
  * Get all screenings
@@ -219,7 +223,7 @@ app.get('/seats/:auditoriumid', function(req, res) {
  * Get user's bookings
  */
 app.get('/booking', function(req, res) {
-    if(checkAuth()) {
+    if(checkAuth(req)) {
         db.getUserBookings(req.session.authenticated.id, (err, result) => {
             res.json(result);
         });
@@ -232,9 +236,14 @@ app.get('/booking', function(req, res) {
  * Delete booking
  */
 app.get('/booking/delete/:id', function(req, res) {
-    if(checkAuth()) {
+    if(checkAuth(req)) {
         db.deleteBooking(req.session.authenticated.id, req.params.id ,(err, result) => {
-            res.json({status: resulta.affectedRows === 1});
+            if(!err)
+               res.json({status: result.affectedRows === 1 ? 'OK' : 'failed'});
+            else {
+                console.error(err);
+                res.json({status: 'failed'})
+            }
         });
     } else {
         res.status(401).send('Unauthorized');
@@ -244,14 +253,15 @@ app.get('/booking/delete/:id', function(req, res) {
 /**
  * Handle a booking request
  */
-app.post('/makebooking/:screening/:seat', function(req, res) {
-    if(checkAuth()) {
-        db.createBooking(req.session.authenticated.id, req.params.screening, req.params.seat, (err, result) => {
+app.post('/booking/create/', function(req, res) {
+    if(checkAuth(req)) {
+        console.log(req.session.authenticated.id + " " + req.body.screening + " " + req.body.seat);
+        db.createBooking(req.session.authenticated.id, req.body.screening, req.body.seat, (err, result) => {
             if(err) {
                 res.json({status: 'failed'});
             } else {
-                if(result.affectedRows !== 1) {
-                    res.json({status: 'success'});
+                if(result.affectedRows === 1) {
+                    res.json({status: 'OK'});
                 } else {
                     res.json({status: 'failed'});
                 }
@@ -267,7 +277,6 @@ app.post('/makebooking/:screening/:seat', function(req, res) {
  */
 app.post('/register', function(req, res) {
     db.createUser(req.body.name, req.body.email, req.body.pwd, (err, result) => {
-        console.log(err + " " + result);
         if(err || result.affectedRows !== 1) {
             console.error('User creation failed');
             res.json({status: 'fail'});
@@ -289,7 +298,8 @@ app.post('/login', function(req, res) {
         } else {
             // update session
             req.session.authenticated = {name: result.name, id: result.idUser};
-            console.log('User ' + result.name + ' logged in');
+            console.log(result);
+            console.log('User ' + result.name + ' Id: ' + result.idUser + ' logged in');
             res.json({status: 'OK'});
         }
     });

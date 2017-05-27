@@ -1,0 +1,28 @@
+<div id="profile-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Omat varaukset</h4>
+      </div>
+      <div class="modal-body" id="reservationlistelement">
+        <% for (var i = 0; i < bookings.length; i++) {
+          var b = bookings[i];%>
+          <div class="col-md-12">
+            <div class="reservation-card">
+              <p>
+                <span><%=b.movieName%></span>
+                <span><%=b.theaterName%> <%=b.time%></span>
+              </p>
+              <button type="button" class="btn btn-danger" onclick="cancelBooking(<%=b.idBooking%>)">Peru varaus</button>
+            </div>
+         </div>
+          <%}%>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

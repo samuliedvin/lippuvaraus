@@ -2,6 +2,7 @@
 <% include ./modals/login-modal %>
 <% include ./modals/signup-modal %>
 <% include ./modals/reservation-modal %>
+<% include ./modals/profile-modal %>
 <% include ./modals/info-modal %>
 <% include ./partials/header %>
 
@@ -9,10 +10,6 @@
     <h1 class="cover-heading">Bio Kex</h1>
     <p class="lead">Tervetuloa elokuvateattereihimme.</p>
 </div>
-
-<% if(user) {%>
-<p><% user %></p>
-<% } %>
 
 <div class="dropdown-menubar">
     <% Date.prototype.addDays = function (d) {
@@ -62,186 +59,12 @@
 
 </div>
 
-<% include ./partials/footer %>
-
 <script>
-
+    // Backend data inject
     // master movie list
     var _movieList = <%-JSON.stringify(movies);%>;
     // master screenings list
     var _screeningsList = <%-JSON.stringify(screenings);%>;
-
-    // DOM elements
-    var _masterMovieElement = document.getElementById('masterMovieElement');
-    var _movieListElement = document.getElementById('movielist');
-
-    /**
-     * Create a new movie element dynamically based on the master
-     * @param {object} movie The movie object, containing data from db
-     */
-    function createMovieElement(movie, screenings) {
-        let newElement = _masterMovieElement.cloneNode(true);
-        newElement.id = '';
-        newElement.classList.add('dynamicMovie');
-        // add image url
-        let imageThumb = newElement.getElementsByClassName('movie-img')[0];
-        imageThumb.style.background = "url('" + movie.imageurl + "') center";
-        imageThumb.style.backgroundSize = 'cover';
-        // title
-        newElement.getElementsByTagName('h3')[0].textContent = movie.title;
-
-        let screeningsListElem = newElement.getElementsByClassName('screenings')[0];
-
-        // list screenings as links
-        screenings.forEach((sc) =>
-            {
-                screeningsListElem.appendChild(createScreeningElement(sc))
-            });
-
-        _movieListElement.appendChild(newElement);
-
-        newElement.style.display = 'block';
-
-        function createScreeningElement(screening) {
-            let tempElem = document.createElement('a');
-            tempElem.textContent = screening.theaterName + ': ' + screening.time.toString().slice(0, 10);
-            return tempElem;
-        }
-    }
-
-    /**
-     * Clear all movies
-     */
-    function clearList() {
-        while(_movieListElement.firstChild) {
-            _movieListElement.removeChild(_movieListElement.firstChild);
-        }
-    }
-
-    /**
-     * Update the movie list
-     */
-    function updateList(movielist, screenings, screeningFilter) {
-
-        // Empty DOM
-        clearList();
-
-        // Get every movie by default
-        movielist.forEach((m) => {
-
-            // get movie specific screenings
-            let movieScreenings = screenings.filter((screening) =>
-                {
-                    if(screening.idMovie !== m.idMovie)
-                        return false; // don't get other movie's screenings
-
-                    if(screeningFilter)
-                        return screeningFilter(screening) // filter by given function
-                    else
-                        return true; // if null select all
-                }
-            );
-
-            // don't show movies with no screenings
-            if(movieScreenings && movieScreenings.length > 0)
-                createMovieElement(m, movieScreenings);
-        });
-    }
-
-    /**+
-     * Send POST request
-     * @param url
-     * @param params
-     * @param cb
-     */
-    function doAjaxPOST(url, params, cb) {
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if(this.readyState === 4) {
-                if(cb)
-                    cb(JSON.parse(this.responseText));
-            }
-        };
-        xhttp.open('POST', url, true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send(params);
-    }
-
-    function doAjax(url, cb) {
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if(this.readyState === 4) {
-                targetp.textContent = this.responseText;
-                if(cb)
-                    cb(JSON.parse(this.responseText));
-            }
-        };
-
-        xhttp.open('GET', 'http://localhost:8080/'+url, true);
-        xhttp.send();
-    }
-
-    /**
-     * Filter movies
-     * @param func Function that handles movie entry, returns true if movie should be selected
-     */
-    function filterMovies(func) {
-        let newList = [];
-        if(movies) {
-            movies.forEach(
-                (movie) => {
-                    if(func(movie)) {
-                        newList.push(movie);
-                    }
-                }
-            );
-            movies = newList;
-        }
-    }
-
-    // update both filters
-    function applyMovieFilters() {
-        let tempList = filterByDate(_screeningsList);
-            tempList = filterByTheater(tempList);
-            updateList(_movieList, tempList);
-    }
-
-    function filterByDate(screeningsList) {
-        let newList = [];
-        let element = document.getElementById('daypicker');
-        let date = element.options[element.selectedIndex].value;
-
-        // show all
-        if(!date || (date === "-1")) {
-            return screeningsList;
-        }
-
-        screeningsList.forEach((s) => {
-            if(s.date === date)
-                newList.push(s);
-        });
-
-        return newList;
-    }
-
-    function filterByTheater(screeningsList) {
-        let newList = [];
-        let element = document.getElementById('theaterpicker');
-        let theaterId = +element.options[element.selectedIndex].value;
-
-        // show all
-        if(!theaterId || (theaterId === -1)) {
-            return screeningsList;
-        }
-
-        screeningsList.forEach((s) => {
-            if(s.idTheater === theaterId)
-                newList.push(s);
-        });
-
-        return newList;
-    }
-
-    // Initially show all movies from DB
-    updateList(_movieList, _screeningsList);
 </script>
+
+<% include ./partials/footer %>

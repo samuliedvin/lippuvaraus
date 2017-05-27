@@ -256,22 +256,22 @@ var findMovies = function (name, cb) {
  */
 var deleteBooking = function(idUser, idReservation, cb) {
     // ebin callback hell
-    commitQuery("SELECT * FROM Reservation WHERE idReservation = ?;", [idReservation], function (err, res) {
+    commitQuery("SELECT * FROM Booking WHERE idBooking = ?;", [idReservation], function (err, res) {
         if(err) {
             cb("Failed");
         } else {
             if(res.length !== 1) {
-                console.error("Invalid number of Reservations were returned: " + res.length);
+                console.error("Invalid number of Bookings were returned: " + res.length);
                 cb("Failed");
             } else {
                 // one reservation was found
                 if(res[0].idUser !== idUser) {
                     // someone tried to delete other user's reservation
-                    console.error("WARNING: User " + idUser + " tried to delete reservation " + idReservation + " by user " + res[0].idUser);
+                    console.error("WARNING: User " + idUser + " tried to delete booking " + idReservation + " by user " + res[0].idUser);
                     cb("Failed");
                 } else {
                     // everything is good, proceed with deleting the reservation
-                    commitQuery("DELETE FROM Reservation WHERE idReservation = ?;", [idReservation], cb);
+                    commitQuery("DELETE FROM Booking WHERE idBooking = ?;", [idReservation], cb);
                 }
             }
         }
@@ -305,7 +305,7 @@ var createBooking = function(idUser, idScreening, idSeat, cb) {
             } else {
                 cb(null, res);
             }
-            console.log("Booking " + res.idBooking + " created");
+            console.log("Booking created");
         });
     }
 };
@@ -514,7 +514,6 @@ var authenticateUser = function(name, passwd, cb) {
         } else {
             // encrypt password
             var encpwd = encryptPwd(passwd);
-            console.log(encpwd + " " + res[0].password);
             if(encpwd === res[0].password) {
                 // authentication successfull
                 cb(null, {idUser: res[0].idUser, name: res[0].name});

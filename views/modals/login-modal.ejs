@@ -33,29 +33,3 @@
 
   </div>
 </div>
-
-<script>
-    function loginUser() {
-        let name = document.forms.login.name.value;
-        let pwd = document.forms.login.pwd.value;
-        let result = true;
-        if(!(name && pwd))
-            result = false;
-        if(!result) {
-            window.alert('Kentät eivät voi olla tyhjiä');
-        } else {
-            doAjaxPOST('/login',
-                'name='+name+'&pwd='+pwd,
-                function (res) {
-                    if(res.status === 'OK')
-                        window.alert('Kirjautuminen onnistui');
-                    else
-                        window.alert('Kirjautuminen epäonnistui');
-                    location.reload();
-                }
-            );
-        }
-        // prevent submit
-        return false;
-    }
-</script>

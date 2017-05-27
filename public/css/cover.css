@@ -42,6 +42,7 @@ p {
 html,
 body {
   height: 100%;
+    width: 100%;
   background: url('/img/turku.jpg');
   background-size: cover;
   background-attachment: fixed;
@@ -246,7 +247,22 @@ Modal settings
     border: none;
 }
 
+#reservationlistelement {
+    display: table;
+}
 
+#reservationlistelement .reservation-card {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#reservationlistelement .reservation-card>* {
+    display: table-cell;
+}
+
+#reservationlistelement span{
+    margin-right: 2em;
+}
 
 
 /*
