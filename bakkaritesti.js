@@ -18,7 +18,7 @@ app.use(session({ secret: 'turunyliopisto', cookie: { maxAge: 30 * 1000 * 60 }})
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.set('view engine', 'ejs'); // set up ejs for templating
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
 
 /**
  * Allow CORS requests from other hosts

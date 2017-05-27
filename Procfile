@@ -1,1 +1,1 @@
-web: node backend/bakkaritesti.js
+web: node bakkaritesti.js
