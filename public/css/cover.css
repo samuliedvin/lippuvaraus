@@ -66,18 +66,17 @@ body {
   vertical-align: top;
 }
 .cover-container {
-  margin-right: auto;
-  margin-left: auto;
-  padding-top: 20%;
+    margin: 0px auto 0px auto;
+    background-color: rgba(0,0,0,0.3);
+    padding-top: 4em;
 }
-
-
 
 /*
  * Header
  */
 .masthead {
     z-index: 50;
+    height: 3.5em;
 }
 
 #navbar {
@@ -99,20 +98,27 @@ body {
 .masthead-nav > li + li {
   margin-left: 20px;
 }
+li#usermessage {
+    margin-right: 30px;
+    margin-left: 30px;
+    opacity: 0.7;
+}
 .masthead-nav > li > a {
-  padding-right: 0;
-  padding-left: 0;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff; /* IE8 proofing */
-  color: rgba(255,255,255,.75);
-  border-bottom: 2px solid transparent;
+    padding-right: 0;
+    padding-left: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff; /* IE8 proofing */
+    color: rgba(255,255,255,.75);
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
 }
 .masthead-nav > li > a:hover,
 .masthead-nav > li > a:focus {
-  background-color: transparent;
-  border-bottom-color: #a9a9a9;
-  border-bottom-color: rgba(255,255,255,.25);
+    background-color: transparent;
+    color: white;
+    border-bottom-color: #a9a9a9;
+    border-bottom-color: rgba(255,255,255,.25);
 }
 .masthead-nav > .active > a,
 .masthead-nav > .active > a:hover,
@@ -148,26 +154,59 @@ body {
 */
 
 .movie-card {
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
     background: rgba(255,255,255, 0.5);
     border-radius: 0.5em;
     padding: 1em;
     margin: 1em;
     text-align: left;
+    height: 15em;
 }
 
 .movie-img {
-    vertical-align: middle;
+    flex: 2;
     height: 10em;
-    width: 10em;
+    width: 5em;
     padding: 0.2em;
     overflow: hidden;
+    border-radius: 5px;
+}
+
+.movietitle {
+    float: left;
+}
+
+
+.movieDisplay {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
 }
 
 .movie-info {
     height: 100%;
-    display: inline-block;
-    vertical-align: middle;
-    width: 70%;
+    flex: 2;
+}
+
+.screenings {
+    flex: 3;
+    height: 100%;
+    overflow: auto;
+}
+.screenings a {
+    display: block;
+    margin: 0px;
+    width: 100%;
+    transition: all 0.5s;
+}
+
+.screenings a:hover {
+    text-indent: 3px;
+    color: #00b3ee;
 }
 
 /*

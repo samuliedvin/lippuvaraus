@@ -493,3 +493,9 @@ VALUES(52,TIMESTAMP('2017-05-18'),92);
 
 INSERT INTO Screening(idMovie, time, idAuditorium)
 VALUES(52,TIMESTAMP('2017-05-19'),92);
+
+
+
+-- muut
+
+select * from User;

@@ -8,21 +8,17 @@
       </div>
       <div class="modal-body">
           <!-- LOGIN FORM -->
-          <form action="/login" method="post">
+          <form name="login" method="post" onsubmit="return false">
               <div class="form-group">
-                  <label>Sähköposti</label>
-                  <input type="text" class="form-control" name="email">
+                  <label>Käyttäjä</label>
+                  <input type="text" class="form-control" name="name">
               </div>
               <div class="form-group">
                   <label>Salasana</label>
-                  <input type="password" class="form-control" name="password">
+                  <input type="password" class="form-control" name="pwd">
               </div>
 
-              <button type="submit" class="btn btn-warning btn-lg">Kirjaudu</button>
-              <div style="display: inline-block; float:right ">
-                  <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
-                  <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>
-              </div>
+              <button type="submit" class="btn btn-warning btn-lg" onclick="return loginUser()">Kirjaudu</button>
           </form>
 
 
@@ -37,3 +33,29 @@
 
   </div>
 </div>
+
+<script>
+    function loginUser() {
+        let name = document.forms.login.name.value;
+        let pwd = document.forms.login.pwd.value;
+        let result = true;
+        if(!(name && pwd))
+            result = false;
+        if(!result) {
+            window.alert('Kentät eivät voi olla tyhjiä');
+        } else {
+            doAjaxPOST('/login',
+                'name='+name+'&pwd='+pwd,
+                function (res) {
+                    if(res.status === 'OK')
+                        window.alert('Kirjautuminen onnistui');
+                    else
+                        window.alert('Kirjautuminen epäonnistui');
+                    location.reload();
+                }
+            );
+        }
+        // prevent submit
+        return false;
+    }
+</script>

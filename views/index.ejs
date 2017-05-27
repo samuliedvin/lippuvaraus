@@ -2,15 +2,17 @@
 <% include ./modals/login-modal %>
 <% include ./modals/signup-modal %>
 <% include ./modals/reservation-modal %>
+<% include ./modals/info-modal %>
 <% include ./partials/header %>
 
-
-
-
 <div id="startchange" class="inner cover">
-<h1 class="cover-heading">Bio Kex</h1>
-<p class="lead">Tervetuloa elokuvateattereihimme.</p>
+    <h1 class="cover-heading">Bio Kex</h1>
+    <p class="lead">Tervetuloa elokuvateattereihimme.</p>
 </div>
+
+<% if(user) {%>
+<p><% user %></p>
+<% } %>
 
 <div class="dropdown-menubar">
     <% Date.prototype.addDays = function (d) {
@@ -19,63 +21,227 @@
             t = t + (d * 86400000);
             this.setTime(t);
         }
+        return this;
     };
 
     var date = new Date();
-    var dd = date.getDate();
-    var mm = date.getMonth()+1; //January is 0!
     %>
 
 
-    <select class="selectpicker" title="Valitse teatteri">
+    <select id="theaterpicker" class="selectpicker" title="Valitse teatteri" onchange="applyMovieFilters()">
+        <option value="-1">Kaikki teatterit</option>
         <% for(i=0; i<theaters.length; i++) { %>
-            <option>
+            <option value="<%= theaters[i].idTheater; %>">
                 <%= theaters[i].name; %>
             </option>
         <% } %>
     </select>
-    <select class="selectpicker" title="Valitse päivä">
+    <select id="daypicker" class="selectpicker" title="Valitse päivä" onchange="applyMovieFilters()">
+        <option value="-1">Kaikki päivät</option>
         <% for(i=0; i<14; i++) { %>
-            <option>
-                <%= (dd+i) + '.' + mm %>
-            </option>
-        <% } %>
-    </select>
-    <select class="selectpicker" title="Valitse alkamisajankohta">
-        <% for(i=14; i<23; i++) { %>
-            <option>
-                <%= i %>:00 %>
+            <option value="<%=(new Date()).addDays(i).toISOString().slice(0,10)%>">
+                <%=(new Date()).addDays(i).toISOString().slice(0,10)%>
             </option>
         <% } %>
     </select>
 </div>
 
-<%
-
-
-for (i=0; i<20; i++) { %>
-    <div class="col-md-12">
-        <div class="movie-card">
-
-            <img class="movie-img" style="background: url('<%= movies[i].imgsrc %>') center; background-size: cover;" />
-            <span class="movie-info">
-                <h3>
-                    <%= movies[i].tit %>
-                </h3>
-                <p>
-                    Vuosi: <%= movies[i].yr %>
-                </p>
-                <p>
-                    Tuotto: $<%= movies[i].grs %>
-                </p>
-                <p>
-                    Ensiesitys: <%= movies[i].opn %>
-                </p>
-
-            </span>
-            <button id="<%= movies[i].tit %>" class="btn btn-warning btn-lg" style="vertical-align: bottom;" data-toggle="modal" data-target="#reservation-modal">Varaa</button>
-        </div>
+<div class="col-md-12" id="masterMovieElement" style="display: none">
+    <div class="movie-card">
+        <img class="movie-img" />
+        <span class="movie-info">
+            <h3 class="movietitle">
+                Elokuva
+            </h3>
+        </span>
+        <div class="screenings"></div>
     </div>
-<% } %>
+</div>
+
+<div id="movielist" style="margin: 0px; padding: 0px">
+
+</div>
 
 <% include ./partials/footer %>
+
+<script>
+
+    // master movie list
+    var _movieList = <%-JSON.stringify(movies);%>;
+    // master screenings list
+    var _screeningsList = <%-JSON.stringify(screenings);%>;
+
+    // DOM elements
+    var _masterMovieElement = document.getElementById('masterMovieElement');
+    var _movieListElement = document.getElementById('movielist');
+
+    /**
+     * Create a new movie element dynamically based on the master
+     * @param {object} movie The movie object, containing data from db
+     */
+    function createMovieElement(movie, screenings) {
+        let newElement = _masterMovieElement.cloneNode(true);
+        newElement.id = '';
+        newElement.classList.add('dynamicMovie');
+        // add image url
+        let imageThumb = newElement.getElementsByClassName('movie-img')[0];
+        imageThumb.style.background = "url('" + movie.imageurl + "') center";
+        imageThumb.style.backgroundSize = 'cover';
+        // title
+        newElement.getElementsByTagName('h3')[0].textContent = movie.title;
+
+        let screeningsListElem = newElement.getElementsByClassName('screenings')[0];
+
+        // list screenings as links
+        screenings.forEach((sc) =>
+            {
+                screeningsListElem.appendChild(createScreeningElement(sc))
+            });
+
+        _movieListElement.appendChild(newElement);
+
+        newElement.style.display = 'block';
+
+        function createScreeningElement(screening) {
+            let tempElem = document.createElement('a');
+            tempElem.textContent = screening.theaterName + ': ' + screening.time.toString().slice(0, 10);
+            return tempElem;
+        }
+    }
+
+    /**
+     * Clear all movies
+     */
+    function clearList() {
+        while(_movieListElement.firstChild) {
+            _movieListElement.removeChild(_movieListElement.firstChild);
+        }
+    }
+
+    /**
+     * Update the movie list
+     */
+    function updateList(movielist, screenings, screeningFilter) {
+
+        // Empty DOM
+        clearList();
+
+        // Get every movie by default
+        movielist.forEach((m) => {
+
+            // get movie specific screenings
+            let movieScreenings = screenings.filter((screening) =>
+                {
+                    if(screening.idMovie !== m.idMovie)
+                        return false; // don't get other movie's screenings
+
+                    if(screeningFilter)
+                        return screeningFilter(screening) // filter by given function
+                    else
+                        return true; // if null select all
+                }
+            );
+
+            // don't show movies with no screenings
+            if(movieScreenings && movieScreenings.length > 0)
+                createMovieElement(m, movieScreenings);
+        });
+    }
+
+    /**+
+     * Send POST request
+     * @param url
+     * @param params
+     * @param cb
+     */
+    function doAjaxPOST(url, params, cb) {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if(this.readyState === 4) {
+                if(cb)
+                    cb(JSON.parse(this.responseText));
+            }
+        };
+        xhttp.open('POST', url, true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send(params);
+    }
+
+    function doAjax(url, cb) {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if(this.readyState === 4) {
+                targetp.textContent = this.responseText;
+                if(cb)
+                    cb(JSON.parse(this.responseText));
+            }
+        };
+
+        xhttp.open('GET', 'http://localhost:8080/'+url, true);
+        xhttp.send();
+    }
+
+    /**
+     * Filter movies
+     * @param func Function that handles movie entry, returns true if movie should be selected
+     */
+    function filterMovies(func) {
+        let newList = [];
+        if(movies) {
+            movies.forEach(
+                (movie) => {
+                    if(func(movie)) {
+                        newList.push(movie);
+                    }
+                }
+            );
+            movies = newList;
+        }
+    }
+
+    // update both filters
+    function applyMovieFilters() {
+        let tempList = filterByDate(_screeningsList);
+            tempList = filterByTheater(tempList);
+            updateList(_movieList, tempList);
+    }
+
+    function filterByDate(screeningsList) {
+        let newList = [];
+        let element = document.getElementById('daypicker');
+        let date = element.options[element.selectedIndex].value;
+
+        // show all
+        if(!date || (date === "-1")) {
+            return screeningsList;
+        }
+
+        screeningsList.forEach((s) => {
+            if(s.date === date)
+                newList.push(s);
+        });
+
+        return newList;
+    }
+
+    function filterByTheater(screeningsList) {
+        let newList = [];
+        let element = document.getElementById('theaterpicker');
+        let theaterId = +element.options[element.selectedIndex].value;
+
+        // show all
+        if(!theaterId || (theaterId === -1)) {
+            return screeningsList;
+        }
+
+        screeningsList.forEach((s) => {
+            if(s.idTheater === theaterId)
+                newList.push(s);
+        });
+
+        return newList;
+    }
+
+    // Initially show all movies from DB
+    updateList(_movieList, _screeningsList);
+</script>
