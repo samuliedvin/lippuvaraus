@@ -113,9 +113,10 @@ app.get('/', function (req, res) {
                                 idTheater = a.idTheater;
                         });
                         moviesRes.forEach((a) => {
-                            if(a.idMovie === screening.idMovie)
+                            if(a.idMovie === screening.idMovie) {
                                 screening.idMovie = a.idMovie;
                                 screening.moviename = a.title;
+                            }
                         });
                         screening.time = screening.time.toISOString().slice(0,10);
                         screening.theaterName = getTheaterName(theatersRes, idTheater);

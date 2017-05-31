@@ -198,7 +198,7 @@ function doBooking() {
                 });
             });
         })).then((msg) => {
-            bootbox.alert('Varaukset tehty');
+            bootbox.alert('Varaukset tehty', () => location.reload());
         });
     }
 }

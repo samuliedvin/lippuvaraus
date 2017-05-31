@@ -1,1 +1,1 @@
-web: node bakkaritesti.js
+web: node server.js
