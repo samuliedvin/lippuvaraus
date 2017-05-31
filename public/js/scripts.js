@@ -1,5 +1,9 @@
 "use strict";
 
+// screening currently selected
+var _selectedScreening = undefined;
+var _seats = [];
+
 /**
  * Validate login input and validate user
  */
@@ -10,16 +14,15 @@ function loginUser() {
     if(!(name && pwd))
         result = false;
     if(!result) {
-        window.alert('Kentät eivät voi olla tyhjiä');
+        bootbox.alert('Kentät eivät voi olla tyhjiä');
     } else {
         doAjaxPOST('/login',
             'name='+name+'&pwd='+pwd,
             function (res) {
                 if(res.status === 'OK')
-                    window.alert('Kirjautuminen onnistui');
+                    bootbox.alert('Kirjautuminen onnistui', () => {location.reload()});
                 else
-                    window.alert('Kirjautuminen epäonnistui');
-                location.reload();
+                    bootbox.alert('Kirjautuminen epäonnistui');
             }
         );
     }
@@ -39,16 +42,15 @@ function registerUser(event) {
     if(!(name && email && pwd1 && pwd1))
         result = false;
     if(!result) {
-        window.alert('Salasanat eivät täsmää tai kenttä tyhjä');
+        bootbox.alert('Salasanat eivät täsmää tai kenttä tyhjä');
     } else {
         doAjaxPOST('/register',
             'name='+name+'&email='+email+'&pwd='+pwd1,
             function (res) {
                 if(res.status === 'OK')
-                    window.alert('Rekisteröinti onnistui');
+                    bootbox.alert('Rekisteröinti onnistui', () => location.reload());
                 else
-                    window.alert('Rekisteröinti epäonnistui');
-                location.reload();
+                    bootbox.alert('Rekisteröinti epäonnistui');
             }
         );
     }
@@ -63,10 +65,9 @@ function registerUser(event) {
 function cancelBooking(idBooking) {
     doAjax('booking/delete/'+idBooking, function(res) {
         if(res.status === 'OK') {
-            window.alert('Varaus peruttu');
-            location.reload();
+            bootbox.alert('Varaus peruttu', () => location.reload());
         } else {
-            window.alert('Varauksen peruminen epäonnistui');
+            bootbox.alert('Varauksen peruminen epäonnistui');
         }
     });
 }
@@ -76,10 +77,9 @@ function createBooking(idScreening, idSeat){
         'screening='+idScreening+'&seat='+idSeat,
         function(res) {
         if(res.status === 'OK') {
-            window.alert('Varaus tehty');
-            location.reload();
+            bootbox.alert('Varaus tehty', () => location.reload());
         } else {
-            window.alert('Varauksen tekeminen epäonnistui');
+            bootbox.alert('Varauksen tekeminen epäonnistui');
         }
     });
 }
@@ -126,6 +126,23 @@ function createMovieElement(movie, screenings) {
         };
         return tempElem;
     }
+}
+
+/**
+ * Open booking modal for a screening
+ * @param idScreening
+ */
+function openBooking(idScreening) {
+    doAjax('seats/' + idScreening, function(res) {
+        if(!res || res.status === 'failed' || res.constructor === Array) {
+            console.error('Failed to fetch seats for screening ' + idScreening);
+            return;
+        }
+
+        // succeeded to fetch seats
+        _selectedScreening = idScreening;
+
+    });
 }
 
 /**
@@ -199,23 +216,23 @@ function doAjax(url, cb) {
     xhttp.send();
 }
 
-/**
- * Filter movies
- * @param func Function that handles movie entry, returns true if movie should be selected
- */
-function filterMovies(func) {
-    let newList = [];
-    if(movies) {
-        movies.forEach(
-            (movie) => {
-                if(func(movie)) {
-                    newList.push(movie);
-                }
-            }
-        );
-        movies = newList;
-    }
-}
+// /**
+//  * Filter movies
+//  * @param func Function that handles movie entry, returns true if movie should be selected
+//  */
+// function filterMovies(func) {
+//     let newList = [];
+//     if(movies) {
+//         movies.forEach(
+//             (movie) => {
+//                 if(func(movie)) {
+//                     newList.push(movie);
+//                 }
+//             }
+//         );
+//         movies = newList;
+//     }
+// }
 
 // update both filters
 function applyMovieFilters() {

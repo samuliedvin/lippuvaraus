@@ -416,6 +416,10 @@ var getScreenings = function (cb) {
     commitQuery("SELECT * FROM Screening;", [], cb);
 };
 
+var getScreening = function (idScreening, cb) {
+    commitQuery("SELECT * FROM Screening WHERE idScreening = ?;", [idScreening], cb);
+};
+
 /**
  * Get screenings from a given date range
  * @param cb
@@ -569,6 +573,7 @@ module.exports = {
 
     // screenings
     getScreenings,
+    getScreening,
     getScreeningsByDate,
     getMovieScreenings,
     getScreeningsByTheaterMovie,

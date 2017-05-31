@@ -219,6 +219,30 @@ app.get('/seats/:auditoriumid', function(req, res) {
     });
 });
 
+app.get('/seats/:screeningid', function(req, res) {
+    // get
+    db.getScreening(req.params.screeningid, (err, result) => {
+        if(err) {
+            res.json({status: 'failed'});
+            return;
+        }
+        // get auditorium seats
+        db.getAuditoriumSeats(result[0].idAuditorium, (err, seats) => {
+            db.getReservedSeats(req.params.screeningid, (err, reservedSeats) => {
+                let _resId = [];
+                for (let i = 0; i < reservedSeats.length; i++) {
+                    _resId.push(reservedSeats[i].idSeat);
+                }
+                for (let i = 0; i < seats.length; i++) {
+                    let seat = seats[i];
+                    seat.reserved = _resId.includes(seat.idSeat);
+                }
+                res.json(seats);
+            });
+        });
+    });
+});
+
 /**
  * Get user's bookings
  */
