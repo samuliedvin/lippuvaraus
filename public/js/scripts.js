@@ -3,6 +3,7 @@
 // screening currently selected
 var _selectedScreening = undefined;
 var _seats = [];
+var _seatCheckboxes = null;
 
 /**
  * Validate login input and validate user
@@ -72,14 +73,17 @@ function cancelBooking(idBooking) {
     });
 }
 
-function createBooking(idScreening, idSeat){
+function createBooking(idScreening, idSeat, cb){
     doAjaxPOST('/booking/create/',
         'screening='+idScreening+'&seat='+idSeat,
         function(res) {
         if(res.status === 'OK') {
-            bootbox.alert('Varaus tehty', () => location.reload());
+            // bootbox.alert('Varaus tehty', () => location.reload());
+            cb(null);
         } else {
-            bootbox.alert('Varauksen tekeminen epäonnistui');
+            console.error('Varauksen ' + idSeat + ' tekeminen epäonnistui');
+            // bootbox.alert('Varauksen tekeminen epäonnistui');
+            cb('failed');
         }
     });
 }
@@ -121,8 +125,12 @@ function createMovieElement(movie, screenings) {
     function createScreeningElement(screening) {
         let tempElem = document.createElement('a');
         tempElem.textContent = screening.theaterName + ': ' + screening.time.toString().slice(0, 10);
-        tempElem.onclick = function() {
-            createBooking(screening.idScreening, 72 + ~~(Math.random() * 10)* 10);
+        const data = tempElem.dataset;
+        data.toggle = 'modal';
+        data.target = '#reservation-modal';
+
+        tempElem.onclick = function() { // open reservation modal and set seat data
+            openBooking(screening.idScreening);
         };
         return tempElem;
     }
@@ -133,16 +141,61 @@ function createMovieElement(movie, screenings) {
  * @param idScreening
  */
 function openBooking(idScreening) {
+    document.getElementById('bookingButton').disabled = user === undefined;
     doAjax('seats/' + idScreening, function(res) {
-        if(!res || res.status === 'failed' || res.constructor === Array) {
+        if(!res || res.status === 'failed' || !res.constructor === Array) {
             console.error('Failed to fetch seats for screening ' + idScreening);
             return;
         }
 
         // succeeded to fetch seats
         _selectedScreening = idScreening;
+        _seats = res;
+
+        if(_seatCheckboxes) {
+            _seats.forEach((s) => {
+                s.disabled = false;
+                s.value = 0;
+                s.checked = false;
+            });
+        }
+        _seatCheckboxes = [];
+
+        // set reserved seats
+        _seats.forEach((s) => {
+            let elem = document.getElementById('seat_row' + s.row + '_seat' + s.number);
+            elem.value = s.idSeat; // set seat id
+            elem.disabled = s.reserved; // set reserved seats disabled
+            _seatCheckboxes
+                .push(elem);
+        });
+
+        // createBooking(screening.idScreening, 72 + ~~(Math.random() * 10)* 10);
 
     });
+}
+
+function doBooking() {
+    if(_seatCheckboxes) {
+        let _chosenSeats = [];
+        _seatCheckboxes.forEach((cb) => {
+            if(cb.checked)
+                _chosenSeats.push(+cb.value);
+        });
+        let success = true;
+        (new Promise(function(res, rej) {
+            let resCounter = 0;
+            _chosenSeats.forEach((cs) => {
+                createBooking(_selectedScreening, cs, function(err) {
+                    resCounter++;
+                    if(resCounter === _chosenSeats.length)
+                        res();
+                });
+            });
+        })).then((msg) => {
+            bootbox.alert('Varaukset tehty');
+        });
+    }
 }
 
 /**

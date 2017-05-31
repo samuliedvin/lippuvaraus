@@ -209,15 +209,15 @@ app.get('/reservedseats/:screeningid', function(req, res) {
         res.json(result);
     });
 });
-
-/**
- * Get auditorium's seats
- */
-app.get('/seats/:auditoriumid', function(req, res) {
-    db.getAuditoriumSeats(req.params.auditoriumid, (err, result) => {
-        res.json(result);
-    });
-});
+//
+// /**
+//  * Get auditorium's seats
+//  */
+// app.get('/seats/:auditoriumid', function(req, res) {
+//     db.getAuditoriumSeats(req.params.auditoriumid, (err, result) => {
+//         res.json(result);
+//     });
+// });
 
 app.get('/seats/:screeningid', function(req, res) {
     // get
@@ -234,8 +234,7 @@ app.get('/seats/:screeningid', function(req, res) {
                     _resId.push(reservedSeats[i].idSeat);
                 }
                 for (let i = 0; i < seats.length; i++) {
-                    let seat = seats[i];
-                    seat.reserved = _resId.includes(seat.idSeat);
+                    seats[i].reserved = _resId.includes(seats[i].idSeat);
                 }
                 res.json(seats);
             });

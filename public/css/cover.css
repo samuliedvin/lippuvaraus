@@ -150,22 +150,29 @@ SEAT MAP TABLE STYLES
 
 .seatMapContainer {
     background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .seatMapContainer p {
     margin: auto;
+    flex: 2;
 }
 
 .seatMapRow {
     display: flex;
+    flex-flow: row nowrap;
     height: 50px;
+}
+
+.seatMapSelector {
+    flex: 1;
 }
 
 .seatMapSeat {
     margin: 1px;
     background:rgba(255,0,0,0.5);
     border-radius: 10%;
-    width: 30px;
     text-align: center;
     height: 95%;
     transition: background-color 0.5s;
@@ -177,11 +184,14 @@ SEAT MAP TABLE STYLES
 
 .seatMapSelector input {
     display:none;
-
 }
 
 input:checked + .seatMapSeat {
     background-color: rgba(255,255,0,0.8);
+}
+
+.seatMapRow input[disabled] + .seatMapSeat {
+    background-color: #5c5c5c;
 }
 
 /*

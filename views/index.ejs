@@ -65,6 +65,13 @@
     var _movieList = <%-JSON.stringify(movies);%>;
     // master screenings list
     var _screeningsList = <%-JSON.stringify(screenings);%>;
+
+    <%if(user){%>
+    var user = '<%=user.name%>';
+    <%}else{%>
+    var user = undefined;
+    <%}%>
+
 </script>
 
 <% include ./partials/footer %>
