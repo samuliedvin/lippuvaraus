@@ -24,28 +24,27 @@
     var date = new Date();
     %>
 
-
     <select id="theaterpicker" class="selectpicker" title="Valitse teatteri" onchange="applyMovieFilters()">
         <option value="-1">Kaikki teatterit</option>
-        <% for(i=0; i<theaters.length; i++) { %>
-            <option value="<%= theaters[i].idTheater; %>">
-                <%= theaters[i].name; %>
-            </option>
+        <% for(i = 0; i < theaters.length; i++) { %>
+        <option value="<%= theaters[i].idTheater; %>">
+            <%= theaters[i].name; %>
+        </option>
         <% } %>
     </select>
     <select id="daypicker" class="selectpicker" title="Valitse päivä" onchange="applyMovieFilters()">
         <option value="-1">Kaikki päivät</option>
-        <% for(i=0; i<14; i++) { %>
-            <option value="<%=(new Date()).addDays(i).toISOString().slice(0,10)%>">
-                <%=(new Date()).addDays(i).toISOString().slice(0,10)%>
-            </option>
+        <% for(i = 0; i < 14; i++) { %>
+        <option value="<%= (new Date()).addDays(i).toISOString().slice(0, 10) %>">
+            <%= (new Date()).addDays(i).toISOString().slice(0, 10) %>
+        </option>
         <% } %>
     </select>
 </div>
 
 <div class="col-md-12" id="masterMovieElement" style="display: none">
     <div class="movie-card">
-        <img class="movie-img" />
+        <img class="movie-img"/>
         <span class="movie-info">
             <h3 class="movietitle">
                 Elokuva
@@ -62,15 +61,15 @@
 <script>
     // Backend data inject
     // master movie list
-    var _movieList = <%-JSON.stringify(movies);%>;
+    var _movieList = <%- JSON.stringify(movies); %>;
     // master screenings list
-    var _screeningsList = <%-JSON.stringify(screenings);%>;
+    var _screeningsList = <%- JSON.stringify(screenings); %>;
 
-    <%if(user){%>
-    var user = '<%=user.name%>';
-    <%}else{%>
+    <% if(user){ %>
+    var user = '<%= user.name %>';
+    <% }else{ %>
     var user = undefined;
-    <%}%>
+    <% } %>
 
 </script>
 

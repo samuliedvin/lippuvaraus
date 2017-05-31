@@ -209,15 +209,6 @@ app.get('/reservedseats/:screeningid', function(req, res) {
         res.json(result);
     });
 });
-//
-// /**
-//  * Get auditorium's seats
-//  */
-// app.get('/seats/:auditoriumid', function(req, res) {
-//     db.getAuditoriumSeats(req.params.auditoriumid, (err, result) => {
-//         res.json(result);
-//     });
-// });
 
 app.get('/seats/:screeningid', function(req, res) {
     // get

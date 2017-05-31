@@ -5,6 +5,12 @@ var _selectedScreening = undefined;
 var _seats = [];
 var _seatCheckboxes = null;
 
+// DOM elements
+var _masterMovieElement = document.getElementById('masterMovieElement');
+var _movieListElement = document.getElementById('movielist');
+var _masterReservationElement = document.getElementById('mastervaraus');
+var _reservationListElement = document.getElementById('reservationlistelement');
+
 /**
  * Validate login input and validate user
  */
@@ -12,16 +18,18 @@ function loginUser() {
     let name = document.forms.login.name.value;
     let pwd = document.forms.login.pwd.value;
     let result = true;
-    if(!(name && pwd))
+    if (!(name && pwd))
         result = false;
-    if(!result) {
+    if (!result) {
         bootbox.alert('Kentät eivät voi olla tyhjiä');
     } else {
         doAjaxPOST('/login',
-            'name='+name+'&pwd='+pwd,
+            'name=' + name + '&pwd=' + pwd,
             function (res) {
-                if(res.status === 'OK')
-                    bootbox.alert('Kirjautuminen onnistui', () => {location.reload()});
+                if (res.status === 'OK')
+                    bootbox.alert('Kirjautuminen onnistui', () => {
+                        location.reload()
+                    });
                 else
                     bootbox.alert('Kirjautuminen epäonnistui');
             }
@@ -40,15 +48,15 @@ function registerUser(event) {
     let pwd1 = document.forms.register.pwd1.value;
     let pwd2 = document.forms.register.pwd2.value;
     let result = (pwd1 === pwd2);
-    if(!(name && email && pwd1 && pwd1))
+    if (!(name && email && pwd1 && pwd1))
         result = false;
-    if(!result) {
+    if (!result) {
         bootbox.alert('Salasanat eivät täsmää tai kenttä tyhjä');
     } else {
         doAjaxPOST('/register',
-            'name='+name+'&email='+email+'&pwd='+pwd1,
+            'name=' + name + '&email=' + email + '&pwd=' + pwd1,
             function (res) {
-                if(res.status === 'OK')
+                if (res.status === 'OK')
                     bootbox.alert('Rekisteröinti onnistui', () => location.reload());
                 else
                     bootbox.alert('Rekisteröinti epäonnistui');
@@ -64,8 +72,8 @@ function registerUser(event) {
  * @param idBooking{number} id of the booking
  */
 function cancelBooking(idBooking) {
-    doAjax('booking/delete/'+idBooking, function(res) {
-        if(res.status === 'OK') {
+    doAjax('booking/delete/' + idBooking, function (res) {
+        if (res.status === 'OK') {
             bootbox.alert('Varaus peruttu', () => location.reload());
         } else {
             bootbox.alert('Varauksen peruminen epäonnistui');
@@ -73,26 +81,26 @@ function cancelBooking(idBooking) {
     });
 }
 
-function createBooking(idScreening, idSeat, cb){
+/**
+ * Send a booking request into the backend
+ * @param idScreening
+ * @param idSeat
+ * @param cb
+ */
+function createBooking(idScreening, idSeat, cb) {
     doAjaxPOST('/booking/create/',
-        'screening='+idScreening+'&seat='+idSeat,
-        function(res) {
-        if(res.status === 'OK') {
-            // bootbox.alert('Varaus tehty', () => location.reload());
-            cb(null);
-        } else {
-            console.error('Varauksen ' + idSeat + ' tekeminen epäonnistui');
-            // bootbox.alert('Varauksen tekeminen epäonnistui');
-            cb('failed');
-        }
-    });
+        'screening=' + idScreening + '&seat=' + idSeat,
+        function (res) {
+            if (res.status === 'OK') {
+                // bootbox.alert('Varaus tehty', () => location.reload());
+                cb(null);
+            } else {
+                console.error('Varauksen ' + idSeat + ' tekeminen epäonnistui');
+                // bootbox.alert('Varauksen tekeminen epäonnistui');
+                cb('failed');
+            }
+        });
 }
-
-// DOM elements
-var _masterMovieElement = document.getElementById('masterMovieElement');
-var _movieListElement = document.getElementById('movielist');
-var _masterReservationElement = document.getElementById('mastervaraus');
-var _reservationListElement = document.getElementById('reservationlistelement');
 
 /**
  * Create a new movie element dynamically based on the master
@@ -113,8 +121,7 @@ function createMovieElement(movie, screenings) {
     let screeningsListElem = newElement.getElementsByClassName('screenings')[0];
 
     // list screenings as links
-    screenings.forEach((sc) =>
-    {
+    screenings.forEach((sc) => {
         screeningsListElem.appendChild(createScreeningElement(sc))
     });
 
@@ -129,7 +136,7 @@ function createMovieElement(movie, screenings) {
         data.toggle = 'modal';
         data.target = '#reservation-modal';
 
-        tempElem.onclick = function() { // open reservation modal and set seat data
+        tempElem.onclick = function () { // open reservation modal and set seat data
             openBooking(screening.idScreening);
         };
         return tempElem;
@@ -142,8 +149,8 @@ function createMovieElement(movie, screenings) {
  */
 function openBooking(idScreening) {
     document.getElementById('bookingButton').disabled = user === undefined;
-    doAjax('seats/' + idScreening, function(res) {
-        if(!res || res.status === 'failed' || !res.constructor === Array) {
+    doAjax('seats/' + idScreening, function (res) {
+        if (!res || res.status === 'failed' || !res.constructor === Array) {
             console.error('Failed to fetch seats for screening ' + idScreening);
             return;
         }
@@ -152,19 +159,14 @@ function openBooking(idScreening) {
         _selectedScreening = idScreening;
         _seats = res;
 
-        if(_seatCheckboxes) {
-            _seats.forEach((s) => {
-                s.disabled = false;
-                s.value = 0;
-                s.checked = false;
-            });
-        }
         _seatCheckboxes = [];
 
         // set reserved seats
         _seats.forEach((s) => {
             let elem = document.getElementById('seat_row' + s.row + '_seat' + s.number);
             elem.value = s.idSeat; // set seat id
+            if(elem.checked)
+                elem.click();
             elem.disabled = s.reserved; // set reserved seats disabled
             _seatCheckboxes
                 .push(elem);
@@ -175,20 +177,23 @@ function openBooking(idScreening) {
     });
 }
 
+/**
+ * Read selected seats and commit bookings, possibly multiple at once
+ */
 function doBooking() {
-    if(_seatCheckboxes) {
+    if (_seatCheckboxes) {
         let _chosenSeats = [];
         _seatCheckboxes.forEach((cb) => {
-            if(cb.checked)
+            if (cb.checked)
                 _chosenSeats.push(+cb.value);
         });
         let success = true;
-        (new Promise(function(res, rej) {
+        (new Promise(function (res, rej) {
             let resCounter = 0;
             _chosenSeats.forEach((cs) => {
-                createBooking(_selectedScreening, cs, function(err) {
+                createBooking(_selectedScreening, cs, function (err) {
                     resCounter++;
-                    if(resCounter === _chosenSeats.length)
+                    if (resCounter === _chosenSeats.length)
                         res();
                 });
             });
@@ -202,7 +207,7 @@ function doBooking() {
  * Clear all movies from DOM
  */
 function clearList() {
-    while(_movieListElement.firstChild) {
+    while (_movieListElement.firstChild) {
         _movieListElement.removeChild(_movieListElement.firstChild);
     }
 }
@@ -219,12 +224,11 @@ function updateList(movielist, screenings, screeningFilter) {
     movielist.forEach((m) => {
 
         // get movie specific screenings
-        let movieScreenings = screenings.filter((screening) =>
-            {
-                if(screening.idMovie !== m.idMovie)
+        let movieScreenings = screenings.filter((screening) => {
+                if (screening.idMovie !== m.idMovie)
                     return false; // don't get other movie's screenings
 
-                if(screeningFilter)
+                if (screeningFilter)
                     return screeningFilter(screening) // filter by given function
                 else
                     return true; // if null select all
@@ -232,7 +236,7 @@ function updateList(movielist, screenings, screeningFilter) {
         );
 
         // don't show movies with no screenings
-        if(movieScreenings && movieScreenings.length > 0)
+        if (movieScreenings && movieScreenings.length > 0)
             createMovieElement(m, movieScreenings);
     });
 }
@@ -245,9 +249,9 @@ function updateList(movielist, screenings, screeningFilter) {
  */
 function doAjaxPOST(url, params, cb) {
     let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if(this.readyState === 4) {
-            if(cb)
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            if (cb)
                 cb(JSON.parse(this.responseText));
         }
     };
@@ -256,11 +260,16 @@ function doAjaxPOST(url, params, cb) {
     xhttp.send(params);
 }
 
+/**
+ * Ajax GET query
+ * @param url
+ * @param cb
+ */
 function doAjax(url, cb) {
     let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if(this.readyState === 4) {
-            if(cb)
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            if (cb)
                 cb(JSON.parse(this.responseText));
         }
     };
@@ -268,24 +277,6 @@ function doAjax(url, cb) {
     xhttp.open('GET', url, true);
     xhttp.send();
 }
-
-// /**
-//  * Filter movies
-//  * @param func Function that handles movie entry, returns true if movie should be selected
-//  */
-// function filterMovies(func) {
-//     let newList = [];
-//     if(movies) {
-//         movies.forEach(
-//             (movie) => {
-//                 if(func(movie)) {
-//                     newList.push(movie);
-//                 }
-//             }
-//         );
-//         movies = newList;
-//     }
-// }
 
 // update both filters
 function applyMovieFilters() {
@@ -306,12 +297,12 @@ function filterByDate(screeningsList) {
     let date = element.options[element.selectedIndex].value;
 
     // show all
-    if(!date || (date === "-1")) {
+    if (!date || (date === "-1")) {
         return screeningsList;
     }
 
     screeningsList.forEach((s) => {
-        if(s.date === date)
+        if (s.date === date)
             newList.push(s);
     });
 
@@ -329,12 +320,12 @@ function filterByTheater(screeningsList) {
     let theaterId = +element.options[element.selectedIndex].value;
 
     // show all
-    if(!theaterId || (theaterId === -1)) {
+    if (!theaterId || (theaterId === -1)) {
         return screeningsList;
     }
 
     screeningsList.forEach((s) => {
-        if(s.idTheater === theaterId)
+        if (s.idTheater === theaterId)
             newList.push(s);
     });
 
