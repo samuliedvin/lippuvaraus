@@ -265,7 +265,7 @@ function doAjax(url, cb) {
         }
     };
 
-    xhttp.open('GET', 'http://localhost:8080/'+url, true);
+    xhttp.open('GET', url, true);
     xhttp.send();
 }
 
