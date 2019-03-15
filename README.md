@@ -1,4 +1,4 @@
-#Käyttöliittymät - Harjoitustyö
+# Käyttöliittymät - Harjoitustyö
 
 Käyttöliittymien harjoitustyö. Tarkoituksena rakentaa elokuvien lippujenvarausjärjestelmä, jossa on seuraavat ominaisuudet:
 
@@ -16,15 +16,15 @@ Ryhmä:
 - Roni Ronkainen
 - Samuli Virtanen
 
-##Käytettävät tekniikat
+## Käytettävät tekniikat
 
-###Backend
+### Backend
 
 - Node.js
 - Express
 - MySQL
 
-###Frontend
+### Frontend
 
 - Angular.js
 - Bootstrap
